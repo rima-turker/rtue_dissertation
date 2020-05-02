@@ -1,0 +1,81 @@
+\section{Research Questions} \label{sec:questions}
+
+The principal research question of this thesis is:
+\begin{restatable}{research*}{rstqprincipal} \label{q:qprincipal}
+\vspace{1em}~\\
+\forceindent \textbf{\emph{How to allow for semantic-aware and cross-lingual processing of Web documents and user queries by leveraging 
+%entities and their relations
+knowledge bases?}}
+\vspace{1em}
+\end{restatable}
+
+This broad research question is broken down into seven specific research questions, each of which entails an combination of different challenges and tasks as stated above and will be addressed in the remainder of this thesis.
+
+\noindent The first two research questions are derived from Challenge 1 \emph{Semantic Gap} and concerns Task 1.1 \emph{Semantic Annotation}:
+
+\begin{restatable}{research}{rstqdisambiguation} \label{q:disambiguation}
+How to enable context-aware and collective entity disambiguation for different types of input mentions in documents?
+\end{restatable}
+\vspace{-0.9em}
+The increasing amount of entities in large knowledge bases can help to bridge unstructured text with structured knowledge and the key  is to disambiguate entity mentions in text with entities in knowledge bases. 
+%where the main challenge lies in mention ambiguity. 
+Recently, many methods have been proposed to tackle this problem. However, most of them assume certain characteristics of the given input mentions, e.g., only named entities are considered. 
+%With regard to this research question investigated in Chapter~\ref{cha:anno_disambiguation}, we show that our approach achieves promising results on various types of input mentions by leveraging the contextual entities derived from the given document and the algorithms of collective disambiguation based on Markov chains.
+In this regard, the research question of how to enable context-aware and collective entity disambiguation for different types of input mentions will be investigated in Chapter~\ref{cha:anno_disambiguation}.
+
+\begin{restatable}{research}{rstqsalient} \label{q:salient}
+How to enable salient entity discovery in documents?
+\end{restatable}
+\vspace{-0.9em}
+For many entity-centric applications, entity salience for a document has become a very important factor. This raises an impending need to identify a set of salient entities that are central to the given input document. For this, we introduce a new task of salient entity discovery with the focus on the disambiguation of mentions into salient entities in a document that existing entity disambiguation solutions cannot well address. This research question will be investigated in Chapter~\ref{cha:anno_salient}. 
+%where we present a graph-based disambiguation framework utilizing a topic-sensitive model based on Wikipedia categories.
+
+\noindent The next two research questions are derived from Challenge 1 \emph{Semantic Gap} and concerns Task 1.2 \emph{Semantic Search}:
+
+\begin{restatable}{research}{rstqrecommendation} \label{q:recommendation}
+How to enable time-aware entity recommendation for temporal information needs?
+\end{restatable}
+\vspace{-0.9em}
+There has been an increasing effort to develop techniques for related entity recommendation, where the task is to retrieve a ranked list of related entities given a keyword query. Another trend in information retrieval (IR) is to take temporal aspects of a given query into account when assessing the relevance of documents. However, while this has become an established functionality in document search engines, the significance of time has not yet been recognized for entity recommendation. In this regard, we address this gap by introducing the task of time-aware entity recommendation. This research question will be investigated in Chapter~\ref{cha:search_entity}. 
+%where we present the first probabilistic model that takes time-awareness into consideration for entity recommendation given temporal information needs.
+
+
+\begin{restatable}{research}{rstqsearch} \label{q:search}
+How to enable effective and efficient keyword search on knowledge graphs?
+\end{restatable}
+\vspace{-0.9em}
+Keyword search on graph data has attracted large interest. Using keyword queries, users can search for complex structured results from knowledge graphs~\cite{}. Existing work so far focuses on the efficient processing of keyword queries~\cite{}, or effective ranking of results~\cite{}. In addition, recent work studies the problem of keyword query cleaning~\cite{}. The motivation is keyword queries are dirty, often containing words that are misspelled or words that do not directly appear but are semantically equivalent to words in the data. Besides dirty queries, keyword search solutions also face the problem of search space explosion, i.e., the space of possible results is generally exponential in the number of query keywords. These issues will be studied in Chapter~\ref{cha:search_relational}.
+%To address these issues, we show that query rewriting can help to improve not only the result quality but also the runtime performance of keyword search on knowledge graph in Chapter~\ref{cha:search_relational}.
+
+\noindent The fifth research question is derived from both Challenge 1 \emph{Semantic Gap} and Challenge 2 \emph{Language Barrier} and concerns Task 2.1 \emph{Cross-lingual Semantic Annotation}:
+
+\begin{restatable}{research}{rstqcrosslinking} \label{q:crosslinking}
+How to enable cross-lingual entity linking in multilingual documents?
+\end{restatable}
+\vspace{-0.9em}
+Previous entity linking solutions are limited to the mono-lingual setting; however, for certain entities, their information is only available in knowledge bases grounded in a foreign language. To address this issue, we consider a new task of cross-lingual entity linking, where documents are in a different language than that used for describing entities in the reference knowledge base. This technology is crucial for many entity-centric applications in a cross-lingual environment. Ultimately, the goal is to construct cross-lingual entity linking tools that can link words or phrases in unstructured text in one language to entities in structured knowledge bases in any other language.
+This research question will be investigated in Chapter~\ref{cha:anno_framework}. 
+
+\noindent The sixth research question is derived from both Challenge 1 \emph{Semantic Gap} and Challenge 2 \emph{Language Barrier} and concerns Task 2.2 \emph{Cross-lingual Semantic Search}:
+
+\begin{restatable}{research}{rstqinterpretation} \label{q:interpretation}
+How to enable cross-lingual keyword query interpretation?
+\end{restatable}
+\vspace{-0.9em}
+As a simple and intuitive paradigm of expressing information needs of users, keyword queries have enjoyed widespread usage, but suffer from the challenges including ambiguity, incompleteness and cross-linguality. More specifically, keyword queries are naturally ambiguous and incomplete, i.e., keywords could refer to different things in different contexts and only aliases, acronyms and misspellings are usually given in the queries. In addition, keyword queries might be formulated in one language or even multiple languages by multilingual users, but they are interested in relevant information in any language that they can understand. 
+%With the goal of addressing these challenges regarding keyword queries, we present a knowledge base approach to cross-lingual query interpretation by transforming query keywords in different languages to their semantic representation in Chapter~\ref{cha:ir_interpretation}.
+%which can facilitate query disambiguation and expansion, and also bridge language barriers 
+These challenges will be addressed in Chapter~\ref{cha:search_interpretation}.
+
+\noindent The last research question is derived from both Challenge 1 \emph{Semantic Gap} and Challenge 2 \emph{Language Barrier} and concerns Task 2.3 \emph{Semantic-based Cross-lingual IR}:
+
+\begin{restatable}{research}{rstqir} \label{q:ir}
+How to enable entity-based cross-lingual information retrieval (IR) by exploiting knowledge bases?
+\end{restatable}
+\vspace{-0.9em}
+Due to an increasing portion of queries involving entities for Web document search~\cite{DBLP:conf/www/PoundMZ10}, the exploitation of \emph{entities and their relations} in knowledge bases beyond the term-based paradigm for information retrieval (IR) has become an area of particular interest.
+In addition, the recent progress in cross-lingual technologies is largely due to the increased availability of multilingual data sources. 
+%In this regard, for entity-based cross-lingual IR we exploit entities in multilingual knowledge bases on the Web, which serve as an interlingua to connect keyword queries and Web documents across languages. This research question will be investigated in Chapter~\ref{cha:ir_framework}.
+Based on that, the research question of how to enable entity-based cross-lingual IR will be investigated in Chapter~\ref{cha:ir_framework}.
+
+With regard to the above research questions, this thesis provides several novel contributions that we will outline in the next section.

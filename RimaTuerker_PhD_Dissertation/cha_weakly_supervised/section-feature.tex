@@ -1,0 +1,68 @@
+\section{Features and Measures} \label{anno_salient:features}
+
+In this section, we discuss the features and measures needed for both general and salient entity linking, while the graph model and algorithm will be presented in Sec.~\ref{anno_salient:graph}.
+
+\subsection{General Features}
+
+The features and measures for general entity linking are similar to the ones used for entity disambiguation described in Chapter~\ref{cha:anno_disambiguation}. In order to make this chapter self-contained, some of the material in the following is repeated from Sec.~\ref{anno_disambiguation:graph} of Chapter~\ref{cha:anno_disambiguation}.
+
+\subsubsection{Prior Mention Importance} 
+For determining the \emph{prior mention importance}, different measures have been used in the literature, such as the TFIDF score~\cite{DBLP:conf/sigir/HanSZ11}. Instead, we employ the Wikipedia link structures.
+As each Wikipedia article describes an entity, article titles, redirect pages and link anchors can be used to refer to the entity. Based on the above sources, we extract all surface forms of entities.
+In addition, we define the probability $P(s)$ that captures how likely a surface form $s$ is an entity mention in a document as
+\begin{equation}\label{anno_salient:P(s)}
+P(s)=\frac{count_{anchor}(s)}{count_{anchor}(s) + count_{raw}(s)}
+\end{equation}
+where $count_{anchor}(s)$ denotes the number of articles that contain $s$ as anchor text and $count_{raw}(s)$ denotes the number of articles where $s$ appears as raw text.
+
+\subsubsection{Mention-Entity Compatibility}
+For each entity mention $m$, we calculate the semantic similarity $SS(m,e)$ representing the local \emph{mention-entity compatibility} of $m$ and its referent entity $e$ as follows
+\begin{equation}\label{anno_salient:SS}
+SS(m,e)=\alpha\cdot LP(m,e) + (1-\alpha)\cdot CS(m,e)
+\end{equation}
+where $LP(m,e)$ is the link probability of $e$ for $m$ and $CS(m,e)$ is the context similarity between $m$ and $e$, $\alpha$ is a tunable parameter.
+%with $\alpha+\beta=1$. 
+%which are both set as 0.5.
+An entity $e$ in KB is characterized by its textual description $e.c$, called \emph{context} of $e$ and a mention $m$ is characterized by its name $m.s$ as a surface form of the corresponding entity and its local surrounding sentences $m.c$, called \emph{context} of $m$.
+The link probability $LP(m,e)$ can be calculated using the probability $P(e|s)$ capturing how likely the surface form $s$ refers to the entity $e$ as follows
+\begin{equation}\label{anno_salient:LP}
+LP(m,e)=P(e|m.s)=\frac{count_{link}(e,s)}{\sum_{e_i\in E_{s}}count_{link}(e_i,s)}
+\end{equation}
+where $count_{link}(e,s)$ denotes the number of links using $s$ as anchor text pointing to $e$ as destination and $E_{s}$ is the set of entities that have the surface form $s$.
+The context similarity $CS(m,e)$ between $m$ and $e$ can be calculated using  cosine similarity on the term vector of the context of $m$ and $e$ as 
+\begin{equation}\label{anno_salient:sim}
+CS(m,e) =  cos(e.\mathbf {c},m.\mathbf {c}) =
+\frac{\langle e.\mathbf {c}, m.\mathbf {c} \rangle}{|e.\mathbf {c}| \cdot |m.\mathbf {c}|}  
+\end{equation}
+
+%In summary, the semantic similarity $SS(m,e)$ between $m$ and $e$ represents the \emph{local mention-entity compatibility}, which captures the most likely entity behind the mention name and that best fits the context of the mention.
+
+\subsubsection{Entity-Entity Coherence}
+The disambiguation process is based on the feature of \emph{entity-entity coherence}, which collectively captures the referent entities of the mentions contained in the same document that are related to each other. In this regard, we calculate the semantic relatedness between each pair of entities $e_i$ and $e_j$ by adopting the Wikipedia link-based measure described in~\cite{witten2008effective,DBLP:conf/cikm/MilneW08}, which is originally modeled after the Normalized Google Distance (NGD)~\cite{DBLP:journals/tkde/CilibrasiV07},  as follows 
+\begin{equation}\label{anno_salient:NGD}
+SR(e_i,e_j)=1-\frac{\log(\max(|E_i|,|E_j|))-\log(|E_i\cap E_j|)}{\log(|E|)-\log(min(|E_i|,|E_j|))}
+\end{equation}
+where $E_i$ and $E_j$ are the sets of entities that link to $e_i$ and $e_j$ in KB respectively, and $E$ is the set of all entities in KB.  
+
+\subsection{Salient Features}
+
+As shown in Chapter~\ref{cha:anno_disambiguation}, the general features discussed above can actually help with entity disambiguation for general entity linking. However, such features do not reflect any information of entity salience so that it is not sufficient to only use them for salient entity linking. In this regard, we introduce two additional features in the following. 
+
+\subsubsection{Document-specific Category Importance}
+For text classification of the input document, we employ John C. Platt's sequential minimal optimization algorithm for training a SVM classifier~\cite{Platt:1999:FTS:299094.299105,Keerthi:2001:IPS:1120489.1120499}. 
+%This implementation globally replaces all missing values and transforms nominal attributes into binary ones. It also normalizes all attributes by default. 
+%(Note that the coefficients in the output are based on the normalized/standardized data, not the original data.) 
+Multi-category problems are solved using pairwise classification. To obtain proper probability estimates, we use the option that fits logistic regression models to the outputs of the SVM. In our multi-category scenario, the predicted probabilities are coupled using Hastie and Tibshirani's pairwise coupling method~\cite{Hastie:1998:CPC:302528.302744}. 
+%Note: for improved speed standardization should be turned off when operating on SparseInstances.
+All these algorithms have been integrated into Weka\footnote{\url{http://www.cs.waikato.ac.nz/ml/weka}}, a collection of machine learning algorithms for data mining tasks. Based on that, we calculate the category probability $P(c_i)$ of the input text for each assigned category $c_i$, which reflects the \emph{document-specific category importance}.
+
+\subsubsection{Entity-Category Association}
+The candidate referent entities are connected to the Wikipedia categories resulting from text classification on the input text, if there exists a path between the corresponding entities and categories in Wikipedia. This can be done by performing a breadth-first search starting from the fundamental category that forms the root of Wikipedia’s category hierarchy to each entity. In order to measure the \emph{entity-category association} between an entity $e$ and its assigned category $c$, we define the distance $d(e,c)$ as the minimum depth at which the entity $e$ is located in Wikipedia’s category tree with the category $c$ as the root.  Then we calculate the semantic association $SA(e,c)$ between entity $e$ and category $c$ by using the method proposed in~\cite{leacock1998combining} originally for measuring word similarity in WordNet, as follows 
+\begin{equation}\label{anno_salient:SA}
+SA(e,c)=-\log\frac{d(e,c)}{2\cdot d_{max}}
+\end{equation}
+where $d_{max}$ is the maximal depth for all pairs of entity and category in Wikipedia.
+
+
+
+ 

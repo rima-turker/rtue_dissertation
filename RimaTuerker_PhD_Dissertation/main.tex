@@ -1,0 +1,208 @@
+% diss_lzh main file
+%********************************************************
+\documentclass[a4paper,BCOR5mm,11pt,headsepline,bibtotoc]{scrbook}
+
+\usepackage[margin={2cm,0.2cm}]{caption}
+\usepackage[super]{nth}
+
+\usepackage{times,amsmath,epsfig}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[ruled,linesnumbered]{algorithm2e}
+\usepackage{graphicx}
+%\usepackage{subfig}
+\usepackage{caption}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{epstopdf}
+\usepackage{subcaption}
+
+\usepackage{comment}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\usepackage{color,soul}
+\usepackage{multirow}
+
+\usepackage{CJKutf8}
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm}
+\usepackage{thmtools,thm-restate}
+\usepackage{bbm}
+
+\usepackage[hyphens]{url}
+\def\UrlBreaks{\do\/\do-}
+
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+\DeclareMathOperator*{\argmax}{arg\,max} 
+
+\newcommand{\TODO}[1]{{TODO:#1}}
+\newcommand{\rima}[1]{\textbf{(Rima: #1)}}
+
+\usepackage{todonotes}
+
+%%\newtheorem{definition}{Definition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newtheorem{example}{Example}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+
+%\renewcommand{\baselinestretch}{2.0}
+
+
+\def\proofsketch{\noindent\hspace{1em}{\itshape Proof Outline: }}
+%\def\endproofsketch{\hspace*{\fill}~\qed\par\endtrivlist\unskip}
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+\newcommand{\hlc}[1]{{\sethlcolor{gray}\hl{#1}}}
+
+%\newtheorem{research}{Research Question}%[chapter]
+\declaretheorem[name=Research Question]{research}
+\declaretheorem[name=Future Work]{future}
+%\newtheorem{hypothesis}{Hypothesis}[chapter]
+\declaretheorem[parent=research]{hypothesis}
+\newtheorem{contribution}{Contribution}
+\declaretheorem[numbered=no]{principal}
+
+\setlength{\parindent}{0pt}
+\newcommand{\forceindent}{\leavevmode{\parindent=1em\indent}}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+\lstdefinelanguage{json}{
+    basicstyle=\scriptsize\ttfamily,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=0,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background},
+    literate=
+%     *{0}{{{\color{numb}0}}}{1}
+%      {1}{{{\color{numb}1}}}{1}
+%      {2}{{{\color{numb}2}}}{1}
+%      {3}{{{\color{numb}3}}}{1}
+%      {4}{{{\color{numb}4}}}{1}
+%      {5}{{{\color{numb}5}}}{1}
+%      {6}{{{\color{numb}6}}}{1}
+%      {7}{{{\color{numb}7}}}{1}
+%      {8}{{{\color{numb}8}}}{1}
+%      {9}{{{\color{numb}9}}}{1}
+%      {:}{{{\color{punct}{:}}}}{1}
+%      {,}{{{\color{punct}{,}}}}{1}
+%      {\{}{{{\color{delim}{\{}}}}{1}
+%      {\}}{{{\color{delim}{\}}}}}{1}
+%      {[}{{{\color{delim}{[}}}}{1}
+%      {]}{{{\color{delim}{]}}}}{1},
+}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\usepackage{currvita}
+
+\usepackage[ngerman, english]{babel} % Englische und Deutsche Version
+% Standard-Dokument mit
+%   Papierformat A4
+%   Binderand 5 mm
+%   Schrift 12-Punkt
+%   Linie unter der Kopfzeile
+%   Nummern ohne Punkt am Ende
+%   Literaturverzeichnis mit Nummer im Inhaltsverzeichnis
+%\usepackage{setspace}
+%\onehalfspacing
+%********************************************************
+% Parameters and Counters
+\newcounter{def_counter}
+%\refstepcounter{def_counter}
+\input{para}
+%********************************************************
+% Create the index
+\makeindex
+%********************************************************
+\begin{document}
+% Tabellen etwas gr��er
+\renewcommand{\arraystretch}{1.25}
+\setlength{\parindent}{3em}
+\setlength{\parskip}{0.3em}
+%********************************************************
+% \nocite*
+%Nummern anders
+%********************************************************
+\frontmatter
+\input{title}
+\maketitle
+%********************************************************
+% Preface and Acknowledgements
+\input{cha_abstract}
+%\input{cha_publications}
+\input{cha_acknowledgements}
+%********************************************************
+% Insert Table of Content, List of Figures, List of Tables
+\tableofcontents
+%\listoffixmes
+\listoffigures
+\listoftables
+%********************************************************
+\mainmatter
+%********************************************************
+% Insert Parts
+%\input{part_Introduction}
+\input{cha_foundations_introduction}
+\input{cha_foundations_basics}
+\input{cha_foundations_text_cat}
+\input{cha_kb_text_cat}
+\input{cha_weakly_supervised_cat}
+%\input{cha_patent_class}
+\input{cha_conclusions_conclusions}
+%\input{part_appendix}
+%********************************************************
+\backmatter
+%********************************************************
+% Insert Bibliography
+%GATHER{diss_lzh.bib}
+%\bibliographystyle{myplainnat}
+\bibliographystyle{pnnamed}
+\bibliography{diss_rtue}
+%********************************************************
+% Insert the Index (do not forget to perform 'makeindex'!
+%\addcontentsline{toc}{chapter}{Index} \printindex
+%********************************************************
+
+
+%\chapter[Appendix: Statutory Declarations]{Statutory Declarations}
+%\small
+%\input{cv}
+%\input{legal-anlage2}
+%\input{legal-anlage3}
+%\input{legal-anlage4}
+\end{document}

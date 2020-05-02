@@ -1,0 +1,245 @@
+\section{Text Categorization} \label{cha:foundations_basics_text_cat}
+The problem of \textit{categorization} has been extensively studied in various domains i.e., data mining, machine learning, database, and information retrieval communities with wide range of applications such as document categorization, spam filtering, medical diagnosis~\cite{book_survey_text_class_algorithms}. The main goal of a categorization task is to assign or more class labels to data instance for which the class is unknown. The general categorization task assumes each class label is a predefined categorical value, e.g., \textit{Sports}, \textit{Science}, \textit{Politics}, etc. The problem of text categorization is closely related to such type of a task. In other words, text categorization aims to assign one or more predefined classes or categories to natural language documents based on the attributes of the each text document. It is one of the most fundamental tasks in Natural Language Processing with wide applications such as sentiment analysis, ... %Text categorization finds its applications in variouse domains such as ...
+Text classification
+has a wide variety of application scenarios, for instance: \newline% explain here the applications
+%TODO enumaration here and the KBs
+%Short Text Classification: A Survey yo can have a look at it
+
+\textbf{Information retrieval.}
+Information retrieval systems and search engines have extensively made use of text categorization techniques~\cite{survey}. The IR task can be formulated as a given user query the task is to retrieve all the relevant documents to the query while retrieving as less relavent documents as possible. It is a crucial task in variaty of domains as it helps to find a quickly finding relavent information within massive natural language text documents which are most of the time highly unstructured. 
+
+
+\textbf{Document organization.}
+A variety of text categorization techniques can be exploited to for document organization in many domains. These include large collection of patent documents, Web content, digital libraries, academic articles. In addition, many companies nowadays required to organize and analyse business information like legal documents, emails, web pages, etc. 
+
+\textbf{Sentiment analysis.}
+One of the most common text categorization problems is sentiment analysis. It aims to extract subjective information such as positive or negative or neutral from text documents. For example, it can help business to understand the social sentiment of their brand and adopt the product accordingly.  
+
+\textbf{Spam filtering.}
+It is often desirable to determine the spam emails i.e., unwanted, and/or virus-infested emails in order to avoid it from getting into email inboxes. Most of the business email networks use spam filtering systems to protect the system from the many possible risks. The goal of the spam filtering systems is to decide whether a given email spam or not. To this end, binary text categorizations techniques have been extensively utilized.
+
+There exist three main types of text categorization methods types of systems, namely, \textit{manual}, \textit{Rule-based}, \textit{Machine Learning based}. Although often manually labeled documents by human highly accurate, it is the most expensive one among the aforementioned methods. Especially, if the text to be labeled is of a specific domain only several domain experts can categorize such data.pretty slow and expensive. On the other hand, Rule-based systems leverage user defined linguistic rules to perform the categorization task.manually build and maintain
+a rule-based system, These rules are designed to utilize the semantic content of the documents to assign relevant categories. Each rule consist of a pattern and the corresponding category~\cite{DBLP:conf/ijcnlp/ChakravarthyJRGB08}. In contrast to aforementioned systems, the machine learning based systems rely on the past observations to make a prediction. In other words, such systems can learn the associations between the content of the documents and the labels by utilizing available training data (pre-labeled). Altough machine learning based systems seem to be the most common, they require large amount of labeled data. Further, not only the size of the data is an issue but also the characteristic of the data is also important to build an successful machine learning based system.  
+
+
+%semi-supervised and weakly supervised Supervised is too expensive % explain each method in 1 or 2 sentences
+In this thesis we focus on where the labeled data is not available
+
+\textcolor{red}{Figure text classification fi from Short Text Classification: A Survey}
+
+An overview of tasks involved in text categorization is shown in Fig In the following sections %explain each step in 1-3 sentence
+
+%classification
+
+%Basic text classification schema explain each step
+%Characteristic of Text
+%\subsection{Text Categorization}
+%Short, long text categorization...
+
+\subsection{Short Text Categorization}
+%Short Text Classification: A Survey
+%Short Text Understanding Through Lexical-Semantic Analysis
+%Combining Knowledge with Deep Convolutional Neural Networks for Short Text Classification
+%Example is necessary
+The main characteristic of short text is the length of text is very limited which is no longer than 200 characters than~\cite{song2014short}. In other words, unlike normal documents short text consist of from a dozen words to a few sentences~\cite{song2014short}. Due to grow of Web e-commerce and online communica produced such as Web search snippets, forum and chat messages
+For example mobile text
+tweet length
+Due to the availability  successfully categorizing them becomes increasingly important in wide range applications such as ...
+
+Besides its limited length, short texts have other uniqe characteristic 
+Sparseness:\\
+Immediacy:\\
+Non-standardability:\\
+Noises and imbalanced distribution:\\
+Ambiguity:\\
+In the following given example 
+
+%explain short text categorization task
+On the other hand, short text categorization similar to arbitrary text categorization (see Sec ) aims to...
+Following we give the formal definition of short text categorization task 
+
+Due to the aforementioned main characteristic of short text conventional text categorization models which rely on \textit{weighted word} (see Sec ) cannot perform well. Therefore, designing successful short text categorization system requires additional effort. Unlike arbitrary text categorization systems, short text categorization systems adopt more sophisticated text representation methods. In other words, should be able to capture more semantic and syntactic information from the text. In the related work section we review the state of the art short text categorization approaches which adopt various methods for short text representation. 
+
+\subsection{Text Preprocessing}
+%Text Classification Algorithms: A Survey
+%HANDBOOK OF NATURAL LANGUAGE PROCESSING
+%Text Analytics with Python
+%any NLP system,
+Most of the time, text data in its raw form is not well structured and contains unnecessary words which do not add any value to the categorization performance. In fact unnecessary words can have adverse effects on system performance. Therefore, for the successful text categorization system the first step is preprocessing which is crucial for many applications. Following we briefly explain the most common text preprocessing techniques:
+
+Text Tokenization: Given a sequence of text text tokenization methods breaks the text into smaller parts called tokens. Often, there are two types of  tokenition systems aims to split the text into sentences or words. Following we give the example of sentence and word tokenization\\
+
+\textbf{Noise removal:} Depending on the type, documents could contain unnecessary special characters like hashtags. Such characters might have negative impact on the categorization performance. Therefore, many NLP applications remove punctuation
+and special characters from texts.\\
+
+\textbf{Case conversions:}\\
+Text documents might contain inconsistent capitilazation of words. This is can be critical a problem especially for the text categorization systems. For example refer to the same thing. Therefore, it would be inappropriate to regard them as two different words in text analysis. In such case converting all the words to lower case can help to achive consistency in terms of capitalization form of the words. On the other hand this procesess can be problematic for interpretation of some words like (e.g., “US” (United States of America) to “us” (pronoun))~\cite{text_class_survey_2019}. Moreover for different languages such as German it might be even better to retain the capitalization form of the words. Overall, based on the characteristic of a corpus e.g., language the case conversition can be applied.  
+
+\textbf{Removing stop-words:} Depending on the length, text documents include many stop words which do not do not contain important significance. Therefore, many NLP applications remove the stop words before start processing the text data. Stop words are the like common words of a language such as ... which do not add any information to the document that can help to perform better text categorization. Further, another benefit of removing stop words is it helps to reduce the size of the dataset which is critical when dealing with the large scale corpus.
+
+\textbf{Stemming and Lemmatizing:} Text documents could contain different form of same words such as .. Stemming and lemmatizing techniques aim to reduce morphological variation of words. While stemming tries to reduces the inflected words into their base form lemmatizing tries to bring words down to word's lemma form, i.e., dictionary form. Although stemming and lemmatization seem to be closely related there is a main difference. In contrast to lemmatization which aims to correctly identifiying meaning of a word based on its context, stemmer operates on asingle word without considering its context. Further in comparison to lemmatizations stemmers are much easier to implement and they are faster. 
+
+For stemming we give the following example:\\
+
+On the other hand for lemmatization we give the following example:\\
+
+
+\subsection{Feature Extraction and Selection}
+%Machine Learning for Text sec 5.2
+%Text Classification Algorithms: A Survey
+%Weighted Words (BoW, TFIDF)
+%Word Embedding at least mention and explain other section
+
+
+%Lexical Representations,%Syntactic Representations,%Semantic Representations\\
+\subsection{Text Categorization Algorithms}
+%Machine Learning for Text
+\textbf{Decision Trees and Random Forest:}\\
+A Decision tree decomposition of data hychacally in which the division is achieved by numerous decision i.e., conditions on the attributes~\cite{book}. The main goal is to split the data into attribute regions which each represents a class label. Random forests are known to be highly robust and accurate implementation of decision trees. \\
+\textbf{Decision Tree Construction:}\\
+Decision trees partition the data space tree-like in a top down fashion. Each leaf corresponds to a class label and each predicate of the tree represents a split condition which is similar to feature selection creteria in categorization. Often, in text categorization each split criteria corresponds to frequency of one or more words present in given texts or a presence of absence of a word. The split criteria can use single wheares the one uses multiple attributes called \textit{multivariate split}.
+Given a text document starting from root splits are recursively applied and in order to identify the branch to followed in a top down fashion until the relavent leaf node is reached. 
+
+This way of creating a tree could cause \textit{over fitting}. Because even with the randomly labeled training data this way of creating tree will provide 100\% accuracy on the training set. This type of a tree will cause inaccurate predictions on the test set because one cannot expect to learn anything from such training data. As a result the performance of a tree will poor even the characteristic of the test data highly suitable for a cateforizazion task. This problem is tackled by \textit{pruning} of the lower level of the tree therefore, the leafes of the tree may contain multiple class labels. reades detail cite
+\textbf{Splitting a Node:}
+As an example in the folowing conditional entropy is used as feature selection criteria in which  only the presence or absence of a term in a document is used as the split criterion
+
+Note that The split criteria can use any of the ...
+
+For the given example, the split is tested for each term tj, and the one providing the lowest conditional entropy is selected. The
+
+Once the tree is built, the categorization of a test sample is straightforward. In other words, for each test sample starting from root based ont he split criteria which branch to follow is determined. This proceses repeated in a top-down fashion until eht leaf node is reached.
+
+\textbf{Multivariate Splits:}
+In the case Multivariate Splits each split createria has multiple appributes and the distributed(?) representation of docments are used to implement multivariate Splits. Sample \textit{r} (user defined parameter) directions such that Y1 ...Yr
+in the d-dimensional vector space and
+project all the documents in L along each of these r directions. .... later 
+
+\textbf{Random Forests:}
+
+
+\textbf{Naive Bayes Classifiers}\\
+The naive Bayes classifier is a probabilistic model which is based on a bayes theorem. To facilate the discussin we give the definiation of Bayes theorem as follows:
+
+
+Naïve Bayes algorithm has been studied extensively  and it is still the one of the standard baseline for text categorization models. The model is a probabilistic generative model which assumes that the given text corpus is generated from a mixture of different classes. The generative process is defines as follows~\cite{aggarwal2018machine}:
+
+1.\\
+2.
+
+The outcome of this generative process assumed to be training and test data. Generally, training data is utilized to approximate the parameters of the probabilistic model. Subsequently, the model then is used to estimate the probability of generation of test document from each class. Finally, the each test sample would be labeled with the class which has the highest probability. for naive bayes classification two classed of models, namely, Multivariate Bernoulli Model, Multinomial Model: are being used commonly.
+
+\textbf{The Bernoulli Model}
+The presence or absence of each term in the document is being used to model Bernoulli model. The vector representation of documents are sparse binary vectors where the frequency of each term is ignored. Bernoulli probabiities are
+
+
+The naive bayes model assumes that presence or absence of the various terms are conditionally independent with respect to the given class. This is the main reason why the term \textit{naive} is used to refer this model. Because in real world setting often this assumption is not correct. 
+In the training phase the model estimates the maximum likelihood values of the the parameters p(r)
+j and r using only the training data. On the other hand, in the testing phase those parameters are utilized to predict the label of a given test document. 
+
+\textbf{Multinomial Model:}\\
+\textbf{Nearest Neighbor Classifiers:}\\
+The main idea of the model is given a test instance identify the k-nearst neighbours of this point. Then compute number of neighbours that belong to each class. Finally, the class with the largest number of points is returned as a relavent to the given test sample. A straightforward implementation of the nearest-neighbor method requires no training phase yet it requires requires O(n) similarity computation in order to find the k nearest neighbours for each given test instance. However, this complexity problem can be addresed by  utilizing a data structure called an inverted index~\cite{}.
+
+k is a parameter, depending on the training set it is value can be determined. In other words, different values of k can be tried on training sent and the one at which the highest accuracy is achieved on the training data is used. Further, in order the find the optimal value of k the validation set is exploited in a leave-one-out manner.
+ 
+A special case of k nnn algorithm is when the value of k is set to 1. Such a model is lack of robustness i.e., can overfit depending on the training data at hand. However, if the size of the training data sufficiently large then then it can achieve an error anywhere close the Bayes error rate. There are also other ways of avoiding the error that may cause by k set to 1 e.g., weighted nearest neighbors, or adaptive nearest- neighbor classification.  random forests and kernel support vector machines, can be shown to be adaptive nearest-neighbor classifier. In the next sections we explain them. 
+
+\textbf{Weighted Nearest Neighbors:}\\
+k-nn performs the cartegorization by relying on the similarity between the instences. In addtion, it can be viewed as a similarity weighted classifier which helps the generlization of it to models like random forests and kernel support vector machines.
+%formula:
+
+the similarity value can be considered as weight. Different similarity measures can be utilized e.g., cosine similarity. In the case of cossine simila  seting  K(Z,Xi) to the dot product Z · Xi. Gaussian kernel similarity is alternative similarity measure as:
+%formula 5.25
+
+where equals to bandwith. The value of σ can be deermined by using a leave-one-out validation approach.
+\\
+
+\\
+\textbf{Rule-Based Classifiers:}\\
+Rule based classifiers define set of \textit{"if then"} rules where left and right hand sides of it refered as \textit{antecedent}, consequent, respectively. An example form of a rule as follows:\\
+\\
+
+The left hand side of the rule, i.e, antecedent contains set of conditions as  
+
+where t is a term and X is a document and each condition refered as conjunct. In such senario a classificatoion performed based on the presence or absence of a words oin documents. If a certain word presents in the document then the rule is triggered or fired, i.e., the condition is satified by the given instance. Once the rule is fired then the class label is generated. Moreover, a rule can be in a form of Qi c where ...
+
+Rule based classifiers similar to other machine learning based classifiers like have training and testing phase. In the training phase based on the training set the set of rules are generated and in the test phase the rules are discovered that are triggered by the given each test instance. In the subsquent sections we briefly introduce some rule generain algorithms.\\
+
+\textbf{Sequential Covering Algorithms:}
+The Sequential Covering Algorithms generates rules for each class individually, i.e., at one time based on  Learn-One-Rule procedure. In other words, by treating the class of interest as the positive class and the rest of the classes are the negative the rules are generated iteratively for the positive class. This procedure continues iteratively untill the predetermined error thereshold rate reached. Once the rules are generarted for the positive all the training samples that are covered by the positive class removed from the training set. This procedure continues until the rules are generated for each class.
+
+\textbf{Learn-One-Rule:}\\
+In this section we explain the lor procedure by for class c. The basic idea in lor considering only presence of terms as a criteria. Because considering 
+absence of terms in documents can cause over-fitting. 
+Further, each term which is assoited with the class c then added to the antecedent one by one. The approach start with empty rule. There are several criterion that can be taken into account for including a term to the rule such as accuracy, FOIL’s information gain, likelihood ratio, entropy, etc.
+For the sake of simplicity, we will concisely denote a rule such as ...
+
+1. One of the simplest criterions is accuracy based. In other words, given the positive class the terms are added to the antecedent that increases the accuracy. In order to avoid overfitting the accuracy of adding a term to the antecedent defined as follows:
+%formula 5.37
+
+2. First Order Inductive Learner FOIL’s information gain is can be an alternative criterion of adding a term to the antecedent
+%formula 5.38
+
+The main idea of this measure is to select the rules with the high coverage. 
+
+Note that terms can be included in the rules until the 100\% accuracy achieved on the training set. However, this is absolutely causes an overfitting. Therefore, another approach has to be taken. similar to decison trees antecedent pruning is necessary.\\
+%Rule Pruning
+
+\textbf{Generating Rules from Decision Trees:}\\
+As explained in sec , each attribute of a decision tree corresponds to a condition. Hence, each predicate in a decision tree can be considered as a rule. Then, for each path in a decision tree the conditions can be conjuncted until the leaf node is reached to generate the rules for the corresponding class. However, since decision trees can contain absence of attributes as a condition, therefore rules can also contain such condition. Finally, the rules are processed and pruned to improved the accuracy with the separate validation set. \\
+\textbf{Associative Classifiers:}\\
+The basic idea of Associative Classifiers rely on exploiting the association rule mining techniques.
+The simple rule is of the form:
+
+where S set of terms and the c is a class label. The set of terms in S, in the antecedent corresponds to the presence of all the terms in a document, only then the rule can be tireggered, i.e., the class label c can be returned. 
+\textbf{Prediction:}
+The prediction pahase is straightforward. For each test instance a class labeles are identified based on the fired rules. However, the clange occurs when the generated class labels are confilict with eachother. then the simpleset approch is using the use the sum of the confidences of all the fired rules for a particular class.
+
+\textbf{Linear Classification and Regression} (SVM, Logistic Reg,)\\
+\textbf{Support Vector Machines:}\\
+The basic idea behind svms is to data points belong to 2 classes based on a margin. SVMs first creates two hyperplanes so called \textit{margin hyperplanes} symmetrically on each side of the decision boundary in a way that most points lie on either side of the hyperplanes. Figure shows. 
+The decision surface W · X = 0 lies in the middle of the two hyperplanes and it is same distance, i.e., \textit{margin} where W · X =1 and W ·X = −1 . Note that the points that are lying between the margins are penalized and this region reflects the uncertainty points called bounded support vectors. Moreover, two hyperplanes could also touch one or more training data points as shown in Figure and such data points referred to as free support vectors.
+The common variation of SVM objective function as follows:
+%formula Dual optimization SVM
+
+where...
+C is chosen empirically, i.e.,  value that maximizes the accuracy. The points that violate the margin penalized by C and the represent the amount by slack variable. Therefore the main goal of the training function is to minimize  e each ξi. 
+
+
+\\
+\textbf{Logistic Reg:}\\
+Logistic regression is a probabilistic model which predicts probabilities of classes instead of classes.
+The objective function of lr is defined as follows:
+%formula 6,29
+And the prediction od a test instance can be performed in two different was as follows:
+%Deterministic
+%Probabilistic
+Often, the probabilistic prediction is and  learned using stochastic gradient descent
+stochastic gradient-descent iterations the gradient defined as follows:
+%formula 6.30
+%formula 6.31
+Typically, lr assumes that the dependent variable y is generated from a Bernoulli probability distribution that defined by a function of the feature variables like 
+
+Now the prediction function can be written more generally y
+%formula 6.32
+Depending on the target variable it is possible to use different type of distribution.
+The likelihood of the entire training data set with n pairs of
+%formula 6,33
+
+\textbf{Multinomial Logistic Regression and Other Generalizations:}\\
+As it has already mentioned before it is possible to generalize the lr model depending on the aplication at hand. Given a k-class problem the dependent variable y is generated as follows:
+
+Then the classes have the probabilitiy distribution as:
+%formula 6.34
+The loss function then is
+%formula 6.35
+refered ass cross entropy
+
+Finally, the stochastic gradient- descent steps can be used to update the parameter
+
+
+\subsection{Evaluation Methods}
+%Dataless, Supervised, weakly supervised, Hierarchical ...
+
+

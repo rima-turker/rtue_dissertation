@@ -1,0 +1,93 @@
+\section{Challenges and Tasks} \label{sec:challenges}
+
+%Two major challenges are faced when accessing information on the Web. These two challenges are stated below and will be addressed in this thesis:
+
+Given the Web repository of both documents and knowledge, two major challenges are faced when accessing information on the Web. We introduce the first challenge as follows: 
+
+\noindent  \textbf{Challenge 1: Semantic Gap.} 
+Accessing both documents and knowledge on the Web can be efficient when the information needs of users are expressed as keyword queries.
+%Accessing documents can be efficient on the Web if one knows the right keywords.
+However, Web documents and keyword queries are usually treated as plain text by current search engines. In other words, term-based matching algorithms are used to retrieve the results according to a given information need. This results in problems for ambiguous terms. For example, ``\emph{Paris}'' can denote the capital of France, towns in Canada and USA, or the socialite and heiress \emph{Paris Hilton}. 
+%Moreover, it is not feasible to satisfy complex information needs involving inference with the term-based retrieval paradigm. For example, current search engines cannot answer the query: ``Which teams sponsored by Nike Inc. are most present on the Web in the last year?''. 
+%Therefore, there exists a \emph{semantic gap} between the ambiguous and inferential formulation of natural language text, e.g., Web documents and user queries, and its semantic representation expressed by formal knowledge, e.g., entity knowledge from the Web repository.
+Moreover, it is not feasible to satisfy complex information needs with the term-based retrieval paradigm. For example, given the information need of finding publications of all researchers from AIFB expressed by the keyword query ``\emph{publications AIFB}'', current Web search engines cannot directly provide the answers, for which users have to first search and browse to find all researchers at AIFB and then another round of search and browsing is needed to find information about their publications.
+Therefore, there exists a \emph{semantic gap} between the ambiguous and vague formulation in natural language
+%, including Web documents and keyword queries, 
+and its semantic representation 
+%expressed by formal knowledge 
+in the form of entities and their relations from knowledge bases. 
+%from the Web repository of knowledge.
+
+%In order to address the above challenges, we formulate three tasks that aim to bridge the semantic gap between natural language text and its formal knowledge as well as to overcome the language barrier for cross-lingual information access.
+
+%In order to address the above challenge, we formulate three tasks that aim to bridge the semantic gap between natural language text and its formal knowledge. 
+
+In order to bridge the \emph{semantic gap} between natural language expressions and their formal knowledge representations, we introduce two tasks that will be addressed in this thesis:
+
+\noindent  \textbf{Task 1.1: Semantic Annotation.} 
+%\emph{Information Extraction (IE)}~\cite{Moens:2006:IEA:1177314}, a form of natural language analysis, is becoming a central technology for bridging the gap between unstructured text documents and formal knowledge. 
+%Semantic annotation is about attaching additional semantic information to documents through metadata that is referring to resources in knowledge bases, such as entities, concepts and relations. With the goal of tying natural language text and semantic knowledge together, semantic annotation can be characterized as the process of dynamic construction of interrelationships between unstructured documents and structured knowledge. 
+The process of tying natural language text and semantic models together is generally referred to as \emph{semantic annotation}~\cite{DBLP:reference/sp/BontchevaC11}, which can be characterized as the dynamic construction of interrelationships between unstructured documents and structured knowledge. More specifically, semantic annotation is about attaching additional semantic information to documents through metadata that is referring to resources in knowledge bases, such as entities as the main focus in this thesis.
+
+\noindent  \textbf{Task 1.2: Semantic Search.} 
+The topic formed around the use of semantics for various search tasks is usually known as \emph{semantic search}, which tries to offer users more precise and relevant results by using semantics that is frequently encoded in knowledge bases. Semantic search has been studied by researchers in many different communities from different viewpoints~\cite{DBLP:journals/ws/TranHL11,DBLP:conf/promisews/BontchevaTC13}. In this thesis, we focus the task on using knowledge about entities and their relationships explicitly given in structured knowledge bases to provide relevant answers for complex information needs of users expressed by keyword queries.
+
+%\noindent  \textbf{Task 1.3: Semantic-based IR.} 
+%Due to an increasing portion of queries involving entities for Web document search~\cite{DBLP:conf/www/PoundMZ10}, 
+%%For example, through query log analysis, Pound et al.~\cite{DBLP:conf/www/PoundMZ10} found that more than half of Web queries are related to entities. In this regard, 
+%the exploitation of \emph{entities and their relations} in knowledge bases beyond the term-based paradigm for information retrieval (IR), also called \emph{semantic-based IR}, has become an area of particular interest.
+%The main difference from the task of semantic search is the focus on using entity knowledge to find documents, rather than forming queries against entities or navigating their relations in knowledge bases. 
+
+Besides the semantic gap, another challenge we face for cross-lingual access to information on the Web is stated below:
+
+\noindent  \textbf{Challenge 2: Language Barrier.} 
+Within the context of globalization, cross-lingual access to information has emerged as an issue of major interest. 
+%In order to achieve the goal that users from different countries have access to the same information, there is an impending need for search systems that can help in overcoming language barriers.
+%In this regard, the increased availability of multilingual data can help at scaling the traditionally monolingual tasks to multilingual and cross-lingual applications. 
+%\lei{It is crucial to support multilingual and cross-lingual document retrieval}\\
+Nowadays, more and more people from different countries are connecting to the Internet and many Web users are able to understand more than one language. 
+For example, more than half of the citizens in the European Union can speak at least one other language than their mother tongue\footnote{\url{http://ec.europa.eu/public_opinion/archives/ebs/ebs_237.en.pdf}}.
+%such that the language diversity will be more important for Web content.
+While the diversity of languages on the Web has been growing in recent years, for most people there is still very little content in their native language. 
+%Today, around 80\% of Web content remains dominated by just 10 languages.  
+%Over half (55.8\%) of Web content is estimated to be in English despite the fact that less than 5\% of the world’s population speak it as a native language. However, 21\%  is estimated to have some level of understanding. 
+As a consequence, 
+%of the ability to understand more than one language, users are also interested in Web content in other languages.
+%, which motivates multilingual and cross-lingual IR.
+multilingual users probably formulate the information needs using their native language, but they are interested in relevant information in any language they can understand. 
+%This results in real benefits when relevant resources on the Web are scare in the original query language.
+%In some other cases, multilingual users could issue queries containing keywords in different languages. For example, Chinese users might represent a foreign company using its original name and a local company using its Chinese name, such as the query ``Google \begin{CJK*}{UTF8}{gbsn}百度\end{CJK*}" with the aim of finding the information about both Google and Baidu, the largest search engines for English and Chinese, respectively. Since specifying the query language should not be the burden of users, this poses new challenges of multilingual and cross-lingual IR.
+%``Facebook \begin{CJK*}{UTF8}{gbsn}扎克伯格\end{CJK*}\footnote{\begin{CJK*}{UTF8}{gbsn}扎克伯格\end{CJK*} is the family name of the Facebook founder Mark Zuckerberg in Chinese}".
+%Furthermore, it is not supposed to be the burden of users to specify the query language.
+%Today, around 80\% of Web content remains dominated by just 10 languages.  
+%Over half (55.8\%) of Web content is estimated to be in English despite the fact that less than 5\% of the world’s population speak it as a first language. However 21\%  estimated to have some level of understanding. 
+%http://blog.unbabel.com/2015/06/10/top-languages-of-the-internet/
+%http://qz.com/292364/why-you-probably-wont-understand-the-web-of-the-future/
+With the goal that users from all countries have access to the same information on the Web, 
+%there is an impending need for techniques that can help in overcoming the \emph{language barrier} by facilitating 
+there exists a \emph{language barrier} for 
+cross-lingual access to information originally produced for a different culture and language. 
+
+In order to address both the challenges of \emph{semantic gap} and \emph{language barrier}, we introduce the cross-lingual extensions of the above two tasks in the following:
+
+\noindent  \textbf{Task 2.1: Cross-lingual Semantic Annotation.} 
+Semantic annotation are typically language dependent, which aims to link unstructured documents in one language with structured knowledge grounded in the same language. 
+\emph{Cross-lingual semantic annotation} goes beyond the general task, as it faces annotation across the boundary of languages, where the documents to be annotated and the resources in knowledge bases used for annotation are in different languages.
+
+\noindent  \textbf{Task 2.2: Cross-lingual Semantic Search.} 
+\emph{Cross-lingual semantic search} 
+%allows users to issue keyword queries in any language for finding the relevant answers in knowledge bases grounded in any other languages.
+extends the task of semantic search in the monolingual setting in the sense that users can use keyword queries in any language for finding the relevant answers in knowledge bases grounded in any other languages.
+In addition, specifying the query language should not be the burden of users and multilingual users could even issue queries consisting of keywords in multiple languages, which makes cross-lingual semantic search more challenging.
+
+Besides Task 2.1 and Task 2.2, we introduce another task to address the challenges of \emph{semantic gap} and \emph{language barrier} in the context of Information Retrieval (IR) research:
+
+\noindent  \textbf{Task 2.3: Semantic-based Cross-lingual IR.} 
+%\emph{Semantic-based Cross-lingual IR} extends the task in the monolingual setting in the sense that users can use keyword queries in any language (even with keywords in multiple languages) to retrieve documents in any other languages. By leveraging the semantic representations of documents and keyword queries resulting from the techniques of cross-lingual semantic annotation and search, documents are retrieved on the basis of relevance to entity knowledge grounded in the same hub languages.
+Different from \emph{Cross-lingual Semantic Search}, \emph{Semantic-based Cross-lingual IR} focuses on using entity knowledge to find documents rather than 
+%forming queries against 
+entities 
+%or navigating 
+and their relations in knowledge bases. In addition, it allows users to issue keyword queries in any language (even with keywords in multiple languages) for retrieving documents in any other languages. By leveraging the semantic representations of documents and keyword queries resulting from the techniques of cross-lingual semantic annotation and cross-lingual semantic search, documents are retrieved on the basis of relevance to entities from knowledge bases grounded in the same hub languages.
+
+Concerned with the above two major challenges and the corresponding tasks, in the next section we will formulate the overall research question, which leads to seven individual research questions according to different challenges and tasks.

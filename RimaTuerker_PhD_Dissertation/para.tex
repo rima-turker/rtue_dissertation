@@ -1,0 +1,239 @@
+% Größe anpassen
+%\usepackage{setspace}
+%\usepackage{geometry}
+
+\usepackage{graphicx}
+%\usepackage{epsfig}
+%\usepackage[german]{varioref}
+
+%\usepackage{longtable}
+%\usepackage{ltxtable}
+\usepackage{boxedminipage}
+
+% Index-Packet
+\usepackage{makeidx}
+
+% Wrap-Figures
+\usepackage{wrapfig}
+
+% \usepackage{palatino}
+
+% Fonts etc:
+% 8-Bit-Fonts
+\usepackage[T1]{fontenc}
+% Web-Addressen auch mit T1-Encoding
+\usepackage[T1]{url}
+% und in sf-Font
+\urlstyle{sf}
+
+%   zusaetzliche Symbole
+\usepackage{textcomp,latexsym,amsfonts}
+
+%   Mac-Umlaute in der Eingabe
+%\usepackage[latin1]{inputenc}
+
+% Schlüssel für Literaturverweise anzeigen
+% \usepackage{showkeys}
+
+\setlength{\emergencystretch}{20pt} \tolerance=4000
+
+% für Algorithmen
+%\usepackage{algorithmic}
+%\usepackage[Algorithmus]{algorithm}
+
+% neue deutsche Rechtschreibung
+%\usepackage{ngerman}
+
+% korrekte Spaces nach Makros
+\usepackage{xspace}
+
+% fuer die aktuelle Zeit
+\usepackage{scrtime}
+
+% Literaturverweise mit (Autor Jahr) nach DIN
+%\usepackage{natbib}
+
+% Literaturverweise mit pnnamed
+\usepackage{pnnamed}
+
+
+% Für Programm Listings
+\usepackage{listings}
+% example
+%\lstset{language=Java} ...
+%\begin{lstlisting}{}
+%for(int i=0; i<n; i++)
+%    cout << "loop";
+%\end{lstlisting}
+
+
+\makeatletter
+
+% Eigenes Verzeichnis für fixme-Vermerke
+\def\listoffixmes{
+  \chapter*{Liste von FIXME-Vermerken}
+    \@starttoc{fxm}
+    }
+%\def\listoffixmes{}
+
+% fixme-Vermerk
+%%%%\newcommand{\fixme}[1]{\marginpar{\raggedright\small{\bf FIXME:} {\em#1}}}
+\newcommand{\fixme}[1]{ %
+  \addcontentsline{fxm}{figure}{\thesubsection{} #1} %
+  \marginpar{%
+    \begin{boxedminipage}{\marginparwidth}%
+      {\small%
+        {\bf FIXME:}\\%
+        {\em  #1}%
+        }%
+    \end{boxedminipage}%
+    }\xspace%
+  }
+
+%\newcommand{\fixme}[1]{}
+
+\newcommand{\largefixme}[1]{
+  \addcontentsline{fxm}{figure}{\thesubsection{} #1}
+  \begin{boxedminipage}{\textwidth}
+    {\bf FIXME:}\\
+    {\em  #1}
+  \end{boxedminipage}
+  }
+
+% Anmerkungen von Lektoren
+\newcommand{\ysu}[1]{
+ \normalfont{\textbf{YSu:} \em #1\/}
+}
+\newcommand{\sha}[1]{
+ \normalfont{\textbf{SHa:} \em #1\/}
+}
+\newcommand{\rst}[1]{
+ \normalfont{\textbf{RSt:} \em #1\/}
+}
+\newcommand{\sst}[1]{
+ \normalfont{\textbf{SSt:} \em #1\/}
+}
+\newcommand{\gst}[1]{
+ \normalfont{\textbf{GSt:} \em #1\/}
+}
+
+% Guide Umgebung für die Übersichten am Anfang von
+% Kapiteln und Abschnitten
+\newcommand{\contendguide}[1]{
+\begin{tabular}{lr}
+\parbox{2cm}{\includegraphics[width=2cm]{./figs/contendguide.eps}}
+& \parbox{10cm}{\setlength{\parskip}{1ex plus0.5ex minus0.2ex} #1}\\
+\end{tabular}
+}
+
+% Abkürzungen
+\newcommand{\methodology}{On-To-Knowledge Methodology}
+\newcommand{\kmp}{Knowledge Meta Process}
+\newcommand{\kp}{Knowledge Process}
+
+% Description ändern
+\renewcommand*\descriptionlabel[1]{\hspace\labelsep
+                                \normalfont{\em #1\/} \hskip 1em plus 1em}
+
+% Bezeichner etc. im Text
+\newcommand{\code}{\sf}
+
+% Auslassung [...] bei Zitaten
+\newcommand{\ausl}{$[\ldots]$\xspace}
+
+% Absatzabstand etwas groesser
+\setlength{\parskip}{1ex plus0.5ex minus0.2ex}
+
+% Abstand zweier Listenelemente kleiner
+\setlength{\itemsep}{0ex plus0.2ex}
+
+% Keine Absatz-Einrückung
+\setlength{\parindent}{0cm}
+
+% description-Umgebung ändern
+% \renewcommand{\descriptionlabel}[1]{\hspace{\labelsep}{\em #1}}
+
+% tag for the beginning of a new file
+\newcommand{\filetag}[1]{\marginpar{\tiny\bf #1}}
+
+% Drei Ebenen numerieren
+\setcounter{secnumdepth}{2} \setcounter{tocdepth}{2}
+
+% Helps LaTeX put figures where YOU want
+\renewcommand{\topfraction}{0.9}    % 90% of page top can be a float
+\renewcommand{\bottomfraction}{0.9} % 90% of page bottom can be a float
+\renewcommand{\textfraction}{0.1}   % only 10% of page must to be text
+
+\makeatother
+
+% Extra-Abstand nach Satzende
+\nonfrenchspacing
+
+% Helvetica-Schrift für den Entwurf, später wieder Roman
+% \renewcommand{\familydefault}{phv}
+
+% Konzepte, Relationen etc. ...
+\def\rel#1{\mbox{\small\textsc{#1}}}
+\def\conc#1{\mbox{\textsf{#1}}}
+\def\inst#1{\mbox{\small{\texttt{#1}}}}
+\def\axiom#1{\mbox{\textit{#1}}}
+\def\var#1{\mbox{\textsl{#1}}}
+\def\code#1{\mbox{\small{\texttt{#1}}}}
+\def\lex#1{\mbox{{\small``\textsf{#1}''}}}
+\def\impliedBy{\leftarrow}
+\def\slot{\rightarrow\hspace{-1.3ex}\rightarrow}
+\def\tslot{\Rightarrow\hspace{-1.3ex}\Rightarrow}
+\def\parabold#1{\vspace{2pt}\noindent\textbf{#1}}
+
+% KA Perspective Defs.
+\usepackage{concepts}
+
+\newcommand{\cC}{C}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cR}{R}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cA}{A}
+\newcommand{\cU}{U}
+\newcommand{\cS}{S}
+\newcommand{\cSC}{\cS_\cC}
+\newcommand{\cSR}{\cS_\cR}
+\newcommand{\Ref}{\mathit{Ref}}
+\newcommand{\RefC}{\Ref_C}
+\newcommand{\RefR}{\Ref_R}
+
+\newcommand{\dom}{\mathrm{dom}}
+\newcommand{\range}{\mathrm{range}}
+\newcommand{\KB}{\mathit{KB}}
+\newcommand{\IL}{\mathit{IL}}
+%\newcommand{\IR}{\mathit{IR}}
+\newcommand{\Lex}{\mathit{Lex}}
+
+%\newcommand{\powerset}{\mathfrak{P}}
+\newcommand{\seml}{[\![}
+\newcommand{\semr}{]\!]}
+\newcommand{\sem}[1]{\seml #1 \semr}
+
+
+% TM (Trademark)
+\def\tm#1{#1\raisebox{1ex}{\fontsize{6}{1}\selectfont\texttt{TM}}}
+
+% Mathe Krams aus dem Web
+
+%\newtheorem{theorem}{Theorem}[section]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{corollary}[theorem]{Corollary}
+%
+%\newenvironment{proof}[1][Proof]{\begin{trivlist}
+%\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+%\newenvironment{definition}[1][Definition]{\begin{trivlist}
+%\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+%\newenvironment{example}[1][Example]{\begin{trivlist}
+%\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+%\newenvironment{remark}[1][Remark]{\begin{trivlist}
+%\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+%
+%\newcommand{\qed}{\nobreak \ifvmode \relax \else
+%      \ifdim\lastskip<1.5em \hskip-\lastskip
+%      \hskip1.5em plus0em minus0.5em \fi \nobreak
+%      \vrule height0.75em width0.5em depth0.25em\fi}

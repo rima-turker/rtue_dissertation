@@ -1,0 +1,32 @@
+\section{Challenges and Tasks} \label{sec:challenges}
+
+\noindent  \textbf{Challenge 1: Requirement of Labeled Training Data.} 
+Over the last few years, with the advent of the deep learning techniques, industry,
+government, and academia exceedingly have been focused on developing machine leaning based systems. %In fact the Worldwide estimated spend in 2019 on AI based systems \$35.8 billion\footnote{https://www.idc.com/getdoc.jsp?containerId=prUS44911419}. 
+Furthermore, recently proposed supervised text classification approaches especially deep nn*ref approaches have demonstrated extremely superior performance in this task. Despite the success of these models they can easily consume million-scale labeled data~\cite{WeaklySupervised}. In other words,
+Many classification models suffer from absence of labeled data. Despite the popularity of neural networks  However, due to high cost of human labelling it is hard to obtain training data~\cite{transfer_learning_for_text_Classification}. labelling trainign daa is mot costly snorkel especially when the domain experts are required
+In order to overcome the bottleneck of labeled data
+
+\noindent  \textbf{Task 1: Utilizing Knowledge Bases as an External Source.} 
+Traditional supervised methods require a significant amount of training data and manually labeling such data can be very time-consuming and costly. To overcome the requirement for labeled data, Knowledge Bases (KBs) can be leveraged to perform short text categorization without using any labeled data. In other words, the semantic relation between the  entities  represented  in  a  short  text  and  the  predefined categories can be utilized to drive the category of the text. Such semantic similarity can be quantified with a help of KB such as Wikipedia which contains entities that are associated with hierarchically related categories.
+
+%\noindent  \textbf{Task 1.2: Utilizing the Semantic Similarity Between the Text and Predefined Labels to Perform the Categorization.} 
+
+\noindent  \textbf{Challenge 2: Limited Context and non-standard characteristics.%\noindent  \textbf{Challenge 2: Learning supervised models without requiring any labeled data as a prerequisite. 
+%under weak supervision without requiring any labeled data as a prerequisite.
+} With the extensive growth of online platforms people are generating everyday more short text data such as product comments, news title, short text messages, tweets, etc. To be able to make sense of such data many researchers have been focusing on categorizing of short texts~\cite{...}. Usually, the content of the short texts contain rather non-standard terms and noise~\cite{song2014short}. Further, the main characteristics of the short text i.e., limited context, sparsity and ambiguity pose much more challenges to the categorization task. 
+%The traditional text categorization models~\cite{...} mostly focused on the categorization of the arbitrary length of documents. 
+Thus, to overcome those challenges,it  is  indispensable  to  use  external  sources  such  as  Knowledge  Bases  (KBs)  to enrich and obtain more advanced text representations~\cite{deepShort}.
+
+\noindent  \textbf{Task 2: Enriching text representations by utilizing KBs.} 
+The traditional text classification models represent text as a bag-of-words to perform text classification. However in the case of short text where the context is rather limited and the ambiguity is one of the major problems, such approaches that utilize only words often lead to inaccurate results. 
+Further, those approaches do not consider the semantic relation between the words. However, entities carry much more information than the words. Especially, when we consider the link structure of KBs the relation between the entities, etc. can represent the text better. Especially, when we consider the structure of the KBs such as entity relations, entities category associations can be extremely helpful to enrich the semantic representation of the short texts.    
+%\noindent  \textbf{Task 2.1: Combining different resources to generate labeled training data.} 
+
+
+%\noindent  \textbf{Task 2.2: Adaption of neural models with pseudo-labeled training data} 
+
+%\noindent  \textbf{Challenge 3: Hierarchically related a large number of labels (patent).} 
+
+
+%\noindent  \textbf{Task 3.1: -} 

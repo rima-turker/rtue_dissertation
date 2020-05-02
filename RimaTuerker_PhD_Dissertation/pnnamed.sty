@@ -1,0 +1,138 @@
+% This file implements citations for the ``pnnamed'' bibliography style.
+%  Place it in a file called pnnamed.sty in the TeX search path.  (Placing it
+% in the same directory as the LaTeX document should also work.)
+%
+% This style is based on apalike, named and aaai-named.
+% Peter Neuhaus
+% The ``pnnamed'' and ``pnnamedshort'' bibliography styles creates
+% citations with labels like \citeauthoryear{author-info}{year}.
+% These labels are processed by the following commands (a keylist
+% probably makes sense only for \cite, but well...):
+%
+%	\cite[text]{keylist}
+%		which produces citations with both author and year,
+%		enclosed in brackets
+%	\shortcite[text]{keylist}
+%		which produces citations with year only,
+%		enclosed in brackets
+%	\textcite[text]{keylist}
+%		which produces citations with author as plain text,
+%		and year in brackets 
+%	\citeauthor[text]{keylist}
+%		which produces the author information only
+%	\citeyear[text]{keylist}
+%		which produces the year information only
+%
+%	\smallbibliography{fontsize-command}
+%		to save space in the references. 
+
+\newlength{\bibhang}
+\setlength{\bibhang}{2em}
+
+\@ifundefined{chapter}{\def\thebibliography#1{\section*{\refname\@mkboth
+  {\uppercase{\refname}}{\uppercase{\refname}}}\list
+  {\relax}{\setlength{\labelsep}{0em}
+    \makesmall
+    \setlength{\itemindent}{-\bibhang}
+    \setlength{\leftmargin}{\bibhang}}
+    \def\newblock{\hskip .11em plus .33em minus .07em}
+    \sloppy\clubpenalty4000\widowpenalty4000
+    \sfcode`\.=1000\relax}}%
+{\def\thebibliography#1{\chapter*{\bibname\@mkboth
+  {\uppercase{\bibname}}{\uppercase{\bibname}}}
+  \addcontentsline{toc}{chapter}{\bibname}
+  \list
+  {\relax}{\setlength{\labelsep}{0em}
+    \makesmall
+    \setlength{\itemindent}{-\bibhang}
+    \setlength{\leftmargin}{\bibhang}}
+    \def\newblock{\hskip .11em plus .33em minus .07em}
+    \sloppy\clubpenalty4000\widowpenalty4000
+    \sfcode`\.=1000\relax}}
+
+% The bibliography in a space saving format. No item separation and
+% small font. Use \smallbibliography{<fontsizecommand>} command before
+% issuing \bibliography{}.
+\def\makesmall{}
+\def\smallbibliography#1{\def\makesmall{#1\setlength{\itemsep}{-\parsep}}}
+
+% cite commands
+\let\@icite\cite
+
+\def\cite{\def\citeauthoryear##1##2{\def\@thisauthor{##1}%
+  \ifx \@lastauthor \@thisauthor \relax \else##1,\ \fi ##2}\@icite}
+
+\def\shortcite{\def\citeauthoryear##1##2{##2}\@icite}
+
+\def\textcite{\def\citeauthoryear##1##2{##1 \leftcite\nobreak##2}\@bycite}
+
+\def\citeauthor{\def\citeauthoryear##1##2{##1}\@nbcite}
+
+\def\citeyear{\def\citeauthoryear##1##2{##2}\@nbcite}
+
+
+% internal macro for citations with [] and with breaks between citations
+% used in \cite and \shortcite
+\def\@icite{\leavevmode\def\@citeseppen{-1000}%
+  \def\@cite##1##2{\leftcite\nobreak\hskip 0in%
+  {##1\if@tempswa , ##2\fi}\rightcite}%
+  \@ifnextchar [{\@tempswatrue\@citex}{\@tempswafalse\@citex[]}}
+
+% internal macro for citations without [] and with no breaks
+% used in \citeauthor and \citeyear
+\def\@nbcite{\leavevmode\def\@citeseppen{1000}%
+  \def\@cite##1##2{##1}%
+  \@ifnextchar [{\@tempswatrue\@citexnb}{\@tempswafalse\@citexnb[]}}
+
+% internal macro for citations without [] and with breaks
+% used in \textcite (there will be an error if multiple refs!)
+\def\@bycite{\leavevmode\def\@citeseppen{-1000}%
+  \def\@cite##1##2{##1\if@tempswa , ##2\fi\nobreak\rightcite}%
+  \@ifnextchar [{\@tempswatrue\@citexby}{\@tempswafalse\@citexby[]}}
+
+% don't box citations, separate with ; and a space
+% also, make the penalty between citations a parameter, 
+% it may be a good place to break
+\def\@citex[#1]#2{%
+  \def\@lastauthor{}\def\@citea{}%
+  \@cite{\@for\@citeb:=#2\do
+    {\@citea\def\@citea{;\penalty\@citeseppen\ }%
+     \if@filesw\immediate\write\@auxout{\string\citation{\@citeb}}\fi
+     \@ifundefined{b@\@citeb}{\def\@thisauthor{}{\bf ?}\@warning
+       {Citation `\@citeb' on page \thepage \space undefined}}%
+     {\csname b@\@citeb\endcsname}\let\@lastauthor\@thisauthor}}{#1}}
+
+% don't box citations, separate with , and a space
+% also, make the penalty between citations a parameter, 
+% it may be a good place to break
+\def\@citexnb[#1]#2{%
+  \def\@lastauthor{}\def\@citea{}%
+  \@cite{\@for\@citeb:=#2\do
+    {\@citea\def\@citea{,\penalty\@citeseppen\ }%
+     \if@filesw\immediate\write\@auxout{\string\citation{\@citeb}}\fi
+     \@ifundefined{b@\@citeb}{\def\@thisauthor{}{\bf ?}\@warning
+       {Citation `\@citeb' on page \thepage \space undefined}}%
+     {\csname b@\@citeb\endcsname}\let\@lastauthor\@thisauthor}}{#1}}
+
+% don't box citations, separate with , and a space
+% also, make the penalty between citations a parameter, 
+% it may be a good place to break.
+\def\@citexby[#1]#2{%
+  \def\@lastauthor{}\def\@citea{}%
+  \@cite{\@for\@citeb:=#2\do
+    {\@citea\def\@citea{\nobreak\rightcite,\penalty\@citeseppen\ }%
+     \if@filesw\immediate\write\@auxout{\string\citation{\@citeb}}\fi
+     \@ifundefined{b@\@citeb}{\def\@thisauthor{}{\bf ?}\@warning
+       {Citation `\@citeb' on page \thepage \space undefined}}%
+     {\csname b@\@citeb\endcsname}\let\@lastauthor\@thisauthor}}{#1}}
+
+% no labels in the references
+\def\@biblabel#1{}
+
+% put citations in delimiters, e.g., brackets
+\def\leftcite{(}\def\rightcite{)}
+
+% previously used to lift square braces. Now obsolete since round
+% braces are used.
+\def\@up#1{\leavevmode\raise.2ex\hbox{#1}}
+

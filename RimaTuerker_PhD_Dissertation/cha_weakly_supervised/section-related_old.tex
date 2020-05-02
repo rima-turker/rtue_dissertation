@@ -1,0 +1,32 @@
+\section{Related Work} \label{related}
+
+DBpedia Soptlight~\cite{DBLP:conf/i-semantics/MendesJGB11}: One of the first semantic approaches was published in 2011, this framework combines NER and NED approach based upon DBpedia. Based on a vector-space representation of entities and using the cosine similarity, this approach has a public (NIF-based) webservice.
+
+DBpedia Soptlight is an annotation system based on the DBpedia knowledge base, which allows users to annotate the text through DBpedia Ontology and quality measures. There are four stages in DBpedia Spotlight system. The first one is spot- ting, in which the LingPipe Exact Dictionary-Based Chunker 4 method based on the Aho-Corasick string mathching algorithm with longest case-insensitive match is used so that the phrases in a sentence is recognized to be a mention in DBpedia resource. In the following step, candidate selection, the space of disambiguation possibilities reduce and fewer candidates are selected which make it possible for the system to increase time performance. When it comes to the disambiguation step, DBpedia resource is modeled as a Vector Space Model (VSM), in which each DBpedia resource is represented as a point in multidimensional words space. Also, the Term Frequency (TF) and the Inverse Document Frequency (IDF) are utilized to represent the relevance and the general im- portance of the word respectively. Moreover, the Inverse Candidate Frequency (ICF) is used to weight the words according to their ability to distinguish between candidates. In other words, The discriminative power of a word is inversely proportional to the number of DBpedia resources it is associated with. Finally, the system provides the configu- ration of Resource Set to Annotate, Resource Prominence, Topic Pertinence, Contextual Ambiguity and Disambiguation Confidence to make the system more relaxable and meet different needs.
+
+
+
+Wikipedia Miner~\cite{DBLP:conf/cikm/MilneW08}: This approach is based on different facts like prior probabilities, context relatedness and quality, which are then combined and tuned using a classifier.
+
+Wikipedia Miner is another frequently used tool for entity linking based on Wikipedia, which provides useful statistics between page anchors and links, such as the commonness of an anchor sense and the link probability of an anchor text. Besides, it also defines the relatedness measure between two senses by using the number of link-in/out pages, with which a word sense disambiguation and a tool to annotate documents with links are provided.
+
+TagMe 2~\cite{DBLP:journals/software/FerraginaS12}: TagMe 2 was publised in 2012 and is based on a directory of links, pages and an inlink graph from Wikipedia. The approach recognizes named entities by matching terms with Wikipedia link texts and disambiguates the match using the in-link graph and the page dataset. Afterwards, TagMe 2 prunes identified named entities which are considered as noncoherent to the rest of the named entities in the input text.
+
+TagMe2, published in 2012 by Paolo Ferragina and Ugo Scaiella utilizes Wikipedia links, pages and inlink graph to annotate the entities in the text. In order to find the named entities in the text, the Wikipedia links and the in-link graph in Wikipedia are utilized to match the terms and disambiguate the matching. Furthermore, the identified named entities considered as noncoherent to the rest of the named entities are filtered by TageMe2.
+
+NERD-ML: In 2013, [11] proposed an approach for entity recognition tailored for extracting entities from tweets. The approach relies on a machine learning clas- sification of the entity type given a rich feature vector composed of a set of linguistic features, the output of a properly trained Conditional Random Fields classifier and the output of a set of off-the-shelf NER extractors supported by the NERD Framework. The follow-up, NERD-ML [35], improved the classification task by redesigning the selection of the features. 
+
+WAT~\cite{DBLP:conf/sigir/PiccinnoF14}: WAT is the successor of TagME. The
+new annotator includes a re-design of all TagME components,
+namely, the spotter, the disambiguator, and
+the pruner. Two disambiguation families were newly
+introduced: graph-based algorithms for collective entity
+linking based and vote-based algorithms for local
+entity disambiguation (based on~\cite{DBLP:journals/software/FerraginaS12}). The spotter and the pruner can be
+tuned using SVM linear models.
+
+WAT is an annotator based on TageMe, which redesigns the components of TagMe, such as the spotter, disambiguator and the pruner. WAT creates two new algorithms, graph-based algorithms to collect entity linking and the vote-based algorithms for disambiguating the local entity. Additionally, a support vector machine linear model is used to tune the spotter and pruner.
+
+
+AGDISTIS~\cite{DBLP:conf/semweb/UsbeckNRGCAB14}	: This approach is a pure entity disambiguation approach (D2KB) based on string similarity measures, an expansion heuristic for labels to cope with co-referencing and the graph-based HITS algorithm. AGDISTIS can only
+be used for the D2KB task.

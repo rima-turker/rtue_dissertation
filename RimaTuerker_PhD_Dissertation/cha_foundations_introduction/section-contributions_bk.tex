@@ -1,0 +1,58 @@
+\section{Contributions of the Thesis}
+
+
+This thesis comprises seven main scientific contributions, each of which results from the investigation of one specific research question. In the following we briefly describe each contribution, which will be detailed in its own chapter.
+
+\begin{restatable}{contribution}{Cdisambiguation} \label{c:disambiguation}
+Context-aware and collective disambiguation of entities in documents
+\end{restatable}
+%\vspace{-0.9em}
+\noindent Based on our publication~\cite{}, we present a context-aware approach to collective entity disambiguation of the input mentions with different characteristics in a consistent manner in Chapter~\ref{cha:anno_disambiguation}. 
+The main contribution includes the contextual entity detection based on a set of predefined part-of-speech (POS) tag patterns, which provides the context to help with entity disambiguation for the given input mentions, and the collective disambiguation using a class of algorithms for estimating the relative importance of candidate entities in the constructed disambiguation graph based on Markov chains.
+Through the extensive experiments conducted on 9 different datasets, we show that our approach outperforms 14 state-of-the-art methods in most cases.
+
+\begin{restatable}{contribution}{Csalient} \label{c:salient}
+A topic-sensitive model for salient entity discovery in documents
+\end{restatable}
+\vspace{-0.9em}
+\noindent In order to tackle the new problem of salient entity discovery, we propose a graph-based entity linking framework, which integrates several features including prior mention importance, mention-entity compatibility, entity-entity coherence and in particular a topic-sensitive model capturing entity-category association and document-specific category importance. We have experimentally shown that our approach achieves a significant improvement over the baselines. The evaluation results also show that the topic-sensitive model indeed helps with the salient entity disambiguation. We have discussed this contribution in our previously published paper~\cite{} and present a revised version in Chapter~\ref{cha:anno_salient}.
+
+
+\begin{restatable}{contribution}{Crecommendation} \label{c:recommendation}
+A probabilistic model for time-aware entity recommendation 
+\end{restatable}
+\vspace{-0.9em}
+\noindent Based on our publication~\cite{}, we propose a statistically sound probabilistic model to tackle the novel task of time-aware entity recommendation in Chapter~\ref{cha:search_entity}. We decompose the task into several well defined probability distributions reflecting heterogeneous entity knowledge and show how all parameters of our probabilistic model can be effectively estimated solely based on data sources publicly available on the Web. Due to the lack of benchmark datasets for this challenge, we have created new datasets to enable empirical evaluation and the results show that our approach improves the performance considerably compared to time-agnostic approaches. 
+
+
+\begin{restatable}{contribution}{Csearch} \label{c:search}
+A probabilistic method of query rewriting for effective and efficient keyword search on knowledge graph
+\end{restatable}
+\vspace{-0.9em}
+\noindent Towards a query rewriting solution that enables more  effective and efficient keyword search on graph data, 
+%we provide a probabilistic ranking of query rewrites and its impact on keyword search effectiveness as well as a context-based computation of query rewrites and its impact on keyword search efficiency. 
+we propose a novel approach to probabilistic ranking and context-based computation of query rewrites. In addition, we investigate the impacts of our ranking mechanism and computation algorithm for query rewriting on both effectiveness and efficiency of keyword search, respectively.
+Based on our publication~\cite{}, we show that our approach to query rewriting is several times faster than the state-of-the-art baseline and also yields higher quality of rewrites especially for large datasets. Most importantly, we show that these improvements on query rewriting also carry over to the actual keyword search. This contribution will be presented in Chapter~\ref{cha:search_relational}.
+
+\begin{restatable}{contribution}{Ccrosslinking} \label{c:crosslinking}
+A framework of cross-lingual entity linking
+\end{restatable}
+\vspace{-0.9em}
+\noindent Most entity linking systems in the monolingual setting employ the context similarity based approaches. The idea is to link a mention in documents to the entity in knowledge bases with the largest similarity based on Bag-of-Words (BOW) models. However, these approaches suffer from the vocabulary mismatch problem for the cross-lingual entity linking task.  
+To address this issue, we constructed a cross-lingual lexica~\cite{} for mention-entity matching and applied a concept-based approach for cross-lingual context similarity calculation~\cite{} to capture the local mention-entity compatibility. In addition, our approach to graph-based collectively entity disambiguation used by monolingual entity linking has been adapted in the cross-lingual setting~\cite{}. Based on our publications, this contribution will be presented in Chapter~\ref{cha:anno_framework}.
+
+\begin{restatable}{contribution}{Cinterpretation} \label{c:interpretation}
+A knowledge base approach to cross-lingual keyword query interpretation
+\end{restatable}
+\vspace{-0.9em}
+\noindent In order to address the challenges that traditional keyword search systems mainly suffer from, we introduce a knowledge base approach to cross-lingual query interpretation by transforming keywords in different languages to their semantic representation. Based on our publication~\cite{}, we propose a scoring mechanism for effective query interpretation ranking and a top-k graph exploration algorithm for efficient query interpretation generation. Through the empirical evaluation, we show that our ranking mechanism and the top-k graph exploration algorithm lead to a considerable improvement over the baseline methods on both effectiveness and efficiency, respectively. This contribution will be presented in Chapter~\ref{cha:search_interpretation}.
+
+\begin{restatable}{contribution}{Cir} \label{c:ir}
+A framework of entity-based cross-lingual information retrieval (IR)
+\end{restatable}
+\vspace{-0.9em}
+\noindent Based on our contributions to both cross-lingual semantic annotation and search, we demonstrate a novel framework of entity-based cross-lingual information retrieval (IR) in Chapter~\ref{cha:ir_framework}. By leveraging entities in the multilingual knowledge base,  keyword queries and Web documents in different languages can be captured on their semantic level to avoid the ambiguity of terms and to bridge the language barrier between queries and documents. To the best of our knowledge, this is the first entity-based system for multilingual and cross-lingual IR, where users can issue keyword queries in any language, which can even contain keywords in multiple languages, for retrieving documents, especially in any other languages. 
+%To avoid the users’ burden of specifying the query languages, we do not assume any input language given by users. 
+\\
+
+These seven contributions collectively address the principal research question stated in Section~\ref{sec:questions} and show how to leverage large knowledge bases available on the Web for \emph{semantic-aware} and \emph{cross-lingual} processing of Web documents and user queries.

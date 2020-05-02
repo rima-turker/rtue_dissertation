@@ -1,0 +1,22 @@
+\begin{minipage}{\textwidth}
+\begin{lstlisting} [caption={RDF document in turtle serialization},label=listing_rdf_serialization]
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix dbr: <http://dbpedia.org/resource/> .
+
+dbo:birthPlace	rdfs:range	dbo:Place .
+dbo:birthPlace	rdfs:domain	dbo:Person .
+dbo:birthPlace	rdf:type	rdf:Property .
+
+dbo:Scientist	rdf:type	rdfs:Class .
+dbo:Scientist	rdf:subClassOf	dbo:Person .
+
+dbr:Albert_Einstein	dbo:birthDate	"1879-03-14"^^xsd:date .
+dbr:Albert_Einstein	rdf:type	dbo:Person .
+dbr:Albert_Einstein	rdf:type	dbo:Scientist .
+dbr:Albert_Einstein	dbo:doctoralAdvisor	dbr:Alfred_Kleiner .
+\end{lstlisting}
+\end{minipage}

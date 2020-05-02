@@ -1,0 +1,88 @@
+%%%%%%%%%%%%%%%%%         Anfang concepts.sty    %%%%%%%%%%%%%%%
+
+\ProvidesPackage{concepts}[2002/24/12 v. 1.1]
+
+%\input dina4.sty
+%\input amsfonts.sty
+
+
+%%%%%%%%%%%%%%%%%         Bildparameter     %%%%%%%%%%%%%%%%%%%%
+
+%\setcounter{topnumber}{5} \def\topfraction{.99}
+%\setcounter{bottomnumber}{5} \def\bottomfraction{.99}
+%\setcounter{totalnumber}{20} \def\textfraction{0}
+%\def\floatpagefraction{0.99} \setcounter{dbltopnumber}{2}
+%\def\dbltopfraction{.7} \def\dblfloatpagefraction{.5}
+
+%%%%%%%%%%%%%%%%%     Definitionen, S"atze etc. %%%%%%%%%%%%%%%%
+
+\newenvironment{Def}{{\par\medskip\noindent \textbf{Definition \arabic{def_counter}: }}}{\par\medskip\noindent}
+\newenvironment{Proof}{{\noindent \bf Proof: }}{\hspace*{\fill} $\Box$\bigskip}
+\newtheorem{Theorem}{{\bf Theorem}}
+\newtheorem{Corollary}[Theorem]{{\bf Corollary}}
+\newtheorem{Lemma}[Theorem]{{\bf Lemma}}
+\def\defb{\refstepcounter{def_counter}\begin{Def}}
+\def\defe{\end{Def}}
+\def\proofb{\begin{Proof}}
+\def\proofe{\end{Proof}}
+\def\theoremb{\begin{Theorem}}
+\def\theoreme{\end{Theorem}}
+\def\corollaryb{\begin{Corollary}}
+\def\corollarye{\end{Corollary}}
+\def\lemmab{\begin{Lemma}}
+\def\lemmae{\end{Lemma}}
+
+%%%%%%%%%%%%%%%%     Begriffsanalyse    %%%%%%%%%%%%%%%%%%%%%%%
+
+\def\GMI{(G,M,I)}
+\def\K{{\mathbb{K}}} 
+\def\B{\mathfrak{B}}
+\def\uB{\underline{\B}}
+\def\BK{\B (\K )}
+\def\uBK{\uB (\K )}
+\def\belongsto{\mbox{\unitlength1em
+                     \begin{picture}(.4,.7)
+                     \put(0,.25){\oval(.5,1)[tr]}
+                     \put(.5,.25){\oval(.5,1)[bl]}
+                     \put(.8,-.25){\vector(1,0){0}}
+                     \end{picture}
+                    }
+              }
+\def\abstractsto{\mbox{\unitlength1em
+                     \begin{picture}(.4,.7)
+                     \put(0,.25){\oval(.5,1)[br]}
+                     \put(.5,.25){\oval(.5,1)[tl]}
+                     \put(.8,.75){\vector(1,0){0}}
+                     \end{picture}
+                    }
+              }
+\def\doppelpfeil{\nearrow\!\!\!\!\!\!\swarrow}
+
+\def\I{{\mathfrak{I}}}
+\def\U{{\mathfrak{U}}}
+\def\a{\mathfrak{a}}
+\def\b{\mathfrak{b}}
+
+%%%%%%%%%%%%%%%%%%%%%        Verb"ande       %%%%%%%%%%%%%%%
+
+\def\sup{\vee}
+\def\Sup{\bigvee}
+\def\inf{\wedge}
+\def\Inf{\bigwedge}
+\def\bigsqcap{\mbox{\unitlength1em
+                    \begin{picture}(.4,.7)
+                    \linethickness{0.2mm}
+                    \put(0,-.15){\line(0,1){.85}}
+                    \put(0,.70){\line(1,0){.55}}
+                    \put(.55,-.15){\line(0,1){.85}}
+                    \end{picture}
+                    }
+             }
+
+%%%%%%%%%%%%%%%%%%     Mathematik       %%%%%%%%%%%%
+
+\def\bigtimes{\mbox{\huge$\times$}}
+%\def\implies{\Rightarrow}
+\def\powerset{{\mathfrak{P}}}
+
+%%%%%%%%%%%%%%%%%         Ende concepts.sty    %%%%%%%%%%%%%%%

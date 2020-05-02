@@ -1,0 +1,52 @@
+\section{Graph Model and Algorithm} \label{anno_salient:graph}
+
+\begin{figure}[!tb]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/cha_annotation_salience/dis_graph.png}
+\caption{Example of graph-based disambiguation utilizing a topic-sensitive model.}  \label{anno_salient:fig:dis}
+%\vspace{-0.4cm}
+\end{figure}
+
+Based on the features and measures discussed in Sec.~\ref{anno_salient:features}, we construct a directed weighted graph $G=\{N,R\}$, called \emph{disambiguation graph}, where $N=N_M \uplus N_E \uplus N_C$ is the disjoint union of \emph{mention} nodes $N_M$, \emph{entity} nodes $N_E$ and \emph{category} nodes $N_C$, and $R$ is the set of directed edges representing relationships between nodes. All detected mentions and their candidate referent entities are added into $N_M$ and $N_E$, respectively, while the categories that the input text belongs to are added into $N_C$. For each mention $m$ and its candidate entity $e$, we add an edge from $m$ to $e$ into $R$. Additionally, we add an edge between $e_i$ and $e_j$ into $R$ if they are connected in KB. Furthermore, for each association between an entity $e$ and a category $c$, an edge from $c$ to $e$ will be added into $R$. An example of the disambiguation graph is illustrated in Fig.~\ref{anno_salient:fig:dis}.
+
+Once the disambiguation graph $G$ is built, we apply the topic-sensitive PageRank algorithm, which has been proposed in~\cite{DBLP:conf/www/Haveliwala02,DBLP:journals/tkde/Haveliwala03} for improving the ranking of Web search results by using the categories of query keywords. Different from the PageRank algorithm used in Chapter~\ref{cha:anno_disambiguation}, two types of new elements are included in the disambiguation graph $G$, i.e., category nodes as well as edges between entity nodes and category nodes. The calculation of the PageRank vector $Pr$ over $G$ is equivalent to resolving the following equation
+\begin{equation}\label{anno_salient:Pr}
+Pr=d\cdot T\cdot Pr + (1-d)\cdot v
+\end{equation}
+where $T$ is the transition probability matrix, $v$ is the initial evidence vector and $d$ is the so called damping factor, usually set as 0.85. 
+Each entry $T_{ij}$ in $T$ is the evidence propagation ratio from node $i$ to node $j$, which is computed in Eq.~\ref{anno_salient:Tij}. 
+\begin{eqnarray}\label{anno_salient:Tij}
+T_{ij}=\left\{ 
+\begin{array}{ll}
+\frac{SS(m_i,e_j)}{\sum_{k\in N_E(i)}SS(m_i,e_k)}  
+&\text{\qquad if $i\in N_M$, $j\in N_E$}\\
+\frac{SR(e_i,e_j)}{\sum_{k\in N_E(i)}SR(e_i,e_k)} 
+&\text{\qquad if $i\in N_E$, $j\in N_E$}\\
+\frac{SA(c_i,e_j)}{\sum_{k\in N_E(i)}SA(c_i,e_k)}  
+&\text{\qquad if $i\in N_C$, $j\in N_E$}
+\end{array} \right. 
+\end{eqnarray}
+where $N_E(i)$ is the set of entity nodes such that for each node $k\in N_E(i)$, there is an edge from $i$ to $k$ in $G$.
+The entry $v_i$ in $v$ is the initial evidence representing the prior importance of a mention $m_i$ if $i\in N_M$ or the document-specific importance of an category $c_i$ if $i\in N_C$, which is calculated as follows
+\begin{eqnarray}\label{anno_salient:vi}
+v_i = \left\{ 
+\begin{array}{ll}
+\frac{\lambda\cdot  P(m_i)}{\lambda\cdot \sum_{k\in N_M}P(m_k)+(1-\lambda)\cdot \sum_{k\in N_C}P(c_k)}
+&\text{\qquad if $i\in N_M$}\\
+\frac{(1-\lambda)\cdot P(c_i)}{\lambda\cdot \sum_{k\in N_M}P(m_k)+(1-\lambda)\cdot \sum_{k\in N_C}P(c_k)} 
+&\text{\qquad if $i\in N_C$}\\
+\qquad\qquad\qquad 0 &\text{\qquad otherwise}
+\end{array} \right. 
+\end{eqnarray}
+where $\lambda$ is a tunalbe parameter, which reflects the sensitivity of prior mention importance and document-specific category importance to the final probability of each candidate entity. When $\lambda = 1$, our method reduces to general entity linking without considering the topic-sensitive model. In contrast, when $\lambda = 0$, the initial evidence of the graph-based disambiguation only depends on the category importance. 
+%Through a learning process, $\lambda$ and $\eta$ are set to the value 0.2 and 0.8, respectively.  
+
+As a result of the topic-sensitive PageRank algorithm, each candidate entity $e$ receives a final probability $P(e)$. 
+For each mention $m$ having a set of candidate entities $E_m$, we choose the entity with the maximal probability as the predicted linking entity, i.e., $e_{m} = \arg\max_{e\in E_m} P(e)$. The process discussed above doesn't distinguish between salient and non-salient entities. In order to deal with salient entity linking, one important task of the \emph{topic-sensitive model} is to validate whether the predicted linking entity $e_{m}$ for mention $m$ is a salient entity. For this purpose, we learn a threshold $\tau$ such that if $P(e_m)$ is greater than $\tau$ we return $e_m$ as the linking entity for $m$, otherwise we return the label \emph{Non-Salient}.
+
+%\Lei{Clarify the intuition of the features of general entity linking and the features of topic-sensitive model.}
+
+%The intuition behind this process is that the nodes representing the correct referent entities of mentions in a document will be more relevant in the disambiguation graph (in the sense that they tend to be connected in KB) than the rest of the candidate entities, which should have less relations on average and be more isolated.
+%As the mentions are connected to their candidate entities by directed edges, they act as source nodes injecting mass (probability) into the entities they are associated with (local mention-entity compatibility), which thus become relevant nodes, and spread their mass over the graph (global entity-entity coherence). Therefore, the resulting probability of entities can be seen as a measure that takes into account both local mention-entity compatibility and global entity-entity coherence.
+
+

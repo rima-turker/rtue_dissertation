@@ -54,7 +54,7 @@ Figure~\ref{fig:rdf_simple_graph} illustrates that the simple ontologies can be 
 %  \caption{RDF document in turtle serialization}
 %  \label{fig:architecture}
 % \end{figure*}
-\subsection{Open Knowledge Graphs}
+\subsection{Open Knowledge Graphs} \todo{check "on the other hand"}
 Open knowledge graphs are openly available and freely usable. There are different ways of constructing open knowledge graphs, i.e, they can be curated by a small group of people or crowd sourced by a large group of people or created by utilizing automatic or semi-automatic methods~\cite{DBLP:journals/semweb/Paulheim17}. In the following we give the example of knowledge bases which have been built by different methods:
 \begin{itemize}
 \item \textbf{Cyc and OpenCyc~\cite{DBLP:journals/cacm/Lenat95}.} Cyc is one of the oldest curated knowledge bases of common sense which is developed and maintained by the CyCorp company starting in 1984. The artificial intelligent project Cyc, represents millions of common sense facts. For example:
@@ -80,12 +80,42 @@ Since Cyc is proprietary, a small version of it so called OpenCyc has been made 
 \item \textbf{NELL~\cite{DBLP:conf/wsdm/CarlsonBWHM10}.} Never Ending Language Learning\footnote{http://rtw.ml.cmu.edu/rtw/} (NELL) is a project developed by a research team at Carnegie Mellon University since January 2010. Unlike DBpedia and YAGO which utilizes semi-structured content (e.g, Wikipedia Infoboxes)  as a base, NELL designed to exploit unstructured data to extract meaningful knowledge. In other words, the project attempts to conduct two main tasks everyday.
 First, it attempts to extract facts from text found in in hundreds of millions of web pages (e.g., servedWith(tea, biscuits)).
 Second, it attempts to improve its fact extracting capability, so that next time it can extract more facts from the web, more accurately. Each extracted fact has a weight which reflect the confidence of it. The system is still running today and has been extending its knowledge base by since the project has developed. So far, NELL has accumulated over 50 million candidate beliefs by reading the web and 2,810,379 of these beliefs are in high confidence. On NELL website, only the beliefs that has the high confidence are displayed. 
-\end{itemize}
+\end{itemize}\vspace{0.5cm}
+\noindent Most of the open knowledge bases contain links to other RDF data sources. By doing so, users can navigate between
+different data sources by following RDF links. Hence, the Semantic Web aims to make meaningful links between publicly available RDF data sources (e.g, DBpedia, Wikidata, etc.) to enable persons and machines to explore \textit{Linked Open Data}~\cite{} freely. In the following let us  briefly discuss the phrase \textit{Linked Open Data}.\\
+
 \subsection{Linked Open Data}
-The Linked Open Data (LOD) is a project which aims to identify datasets that are available under open licenses, re-publish
-these in RDF on the Web and interlink them with each other~\cite{2008}. More precisely, LOD refers to publicly avalible RDF data which is identified via URI and accessible via HTTP on the Web. Those RDF datasets are linked to other data via URI. Tim defines the Linked Opne Data rules as follows:
+%\noindent \textbf{Linked Open Data (LOD).}
+Linked Open Data (LOD) refers to publicly available RDF data which is identified via URI and accessible via HTTP on the Web. Further, those RDF datasets are linked to other datasets via URI. Accordingly, the Linked Open Data project aims to identify datasets that are available under open licenses, re-publish
+these in RDF on the Web and interlink them with each other~\cite{DBLP:conf/www/BizerHIB08}. \\
+The principles of Linked Data were first outlined by Berners-Lee in 2006:
+\begin{itemize}
+\item Use URIs as names for things.
+\item Use HTTP URIs so that people can look up those names.
+\item When someone looks up a URI, provide useful information, using the standards (e.g. RDF).
+\item Include links to other URIs, so that they can discover more
+things.
+\end{itemize}
+The four rules provide broad guidance on which publishing RDF data can be based. LOD is accessed using traditional HTML
+browsers and users can easily explore and navigate between different data source.
+
+The network of publicly available RDF datasets that are in concordance with linked data principles has grown globally. As of April 2017, the number of the publicly available RDF datasets is 9960 which contain roughly more than 149 billion facts and roughly more than 800 million links.\todo{check the numbers} The visualization of interlinked RDF datasets which is refered as \textit{Linked Open Data Cloud\footnote{https://lod-cloud.net/}} has been  created by~\cite{LOD_cloud}.  Figure ~\ref{fig:lod_cloud} illustrates the evolution of the LOD cloud from its beginning in 2007 until 2019.  
+
+Each node in the networks represents one dataset. As of March 2019, the huge network contains 1,239 datasets with 16,147 links. DBpedia has been one of the most popular datasets in these networks across the years. 
+%Semantic web is about making meaningful links between heterogeneous data sources to enable persons and machines to explore a "web of data" 
+\newpage
+\input{Figures/fig_LOD_evolution_07_09}
+\vspace{10cm}
+\input{Figures/fig_LOD_evolution_14_17}
+%\input{Figures/fig_deneme}
+\clearpage
+
+\begin{figure}[t!]
+\centering
+ \includegraphics[height=9cm,width=9cm]{Figures/fig_LOD_2019_clean.png}
+ \caption{March 2019 (1,239 datasets)}
+ \label{fig:lod_cloud}
+\end{figure}
 
 
-
-
-
+%\clearpage

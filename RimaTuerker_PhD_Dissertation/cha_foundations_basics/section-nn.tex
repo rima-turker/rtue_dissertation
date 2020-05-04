@@ -1,6 +1,6 @@
 \setcounter{secnumdepth}{4}
 \section{Neural Networks}  \label{cha:foundations_basics_nn}
-This section is organized as follows. In this section first providing a brief history of deep learning ...
+This section is organized as follows. In this section first providing a brief history of deep learning ...\todo{here you explain why you have only example of an architecture for cnns}
 \subsection{The Beginnings of Artificial Neural Networks}
 %if you like to extend you can add country and the field of the people
 Alan Turing who is considered to be the father of computer science laid  the first foundations of artificial intelligence with his paper titled \textit{"Computing machinery and intelligence"} in 1950s. In his paper he introduced the \textit{Turing test} which is a test of a computer's ability to determine whether the it can be regarded as intelligent, and a human evaluator, i.e., \textit{referee} judges the computer's ability. 
@@ -129,36 +129,68 @@ Finally, the wights are updated according to the formula below:
 \end{equation}
     
 \subsection{Convolutional Neural Networks}
-Convolutional neural networks (CNNs) are specialized neural networks for processing grid-structured data, e.g., image data (2D grid), time series data (1D grid). Although CNNs can be utilized with various type of data, the majority of the applications are focused on image data. Therefore, in this chapter first general architecture of convolutional neural networks where the input is image data and then application of convolutional neural networks to text categorization task have been described. 
+\label{subsec:CNNs}
+Convolutional neural networks (CNNs) are specialized neural networks for processing grid-structured data, e.g., image data (2D grid), time series data (1D grid). Although CNNs can be utilized with various type of data, the majority of the applications were focused on image data such as image and video recognition, image classification, medical image analysis, etc. until the adaption of a CNN architecture for a sentence classification task by~\cite{DBLP:conf/emnlp/Kim14}. %~\cite{DBLP:conf/emnlp/Kim14} utilizes word embeddings for  if you like you can extend this part
+Although CNNs have been utilized in variety of applications since 1990s, after the publication of the paper by ~\cite{DBLP:conf/emnlp/Kim14} CNNs gained significant attention for text classification task. The proposed architecture by Kim is relatively simple, i.e., 1-layer CNN yet demonstrated strong empirical performance across several datasets. Soon later several papers have been published in this direction~\cite{}.
+Today, the proposed model by Kim still the one of the most widely used supervised baselines for text classification. 
 
+%Therefore, in this chapter first general architecture of convolutional neural networks where the input is image data and then application of convolutional neural networks to text categorization task have been described. 
+
+% The general architecture of CNNs are explained in Section~\ref{subsec:CNNs}. CNNs have been used widely in the applications of image and video recognition, image classification, medical image analysis, etc. However, after ~\cite{DBLP:conf/emnlp/Kim14} proposed a CNN architecture for sentence classification, the model has gained significant attention among the NLP applications such as text categorization, sentiment analysis, etc. Considering that this thesis is about text categorization, here we explain the adaption of convolutional neural networks to text categorization task. 
+
+
+
+
+%Unlike image data (usually 3 dimensional including colors), text data data can be represented with 2-dimentsional vectors. 
+
+
+
+% \begin{figure*}[h]
+% \centering
+%  \includegraphics[width=\linewidth]{Figures/fig_cnn.png}
+%  \caption{Overview of a simple convolutional neural network architecture.}
+%  \label{fig:cnn}
+% \end{figure*}
 \begin{figure*}[h]
 \centering
- \includegraphics[width=\linewidth]{Figures/fig_cnn.png}
- \caption{Overview of a simple convolutional neural network architecture.}
- \label{fig:cnn}
+ \includegraphics[width=\linewidth]{Figures/fig_cnn_for_text_cat.png}
+ \caption{CNN architecture for sentence classification. The image has been extracted from\protect~\cite{DBLP:conf/ijcnlp/ZhangW17}.}
+ \label{fig:cnn_text_cat}
 \end{figure*}
 
-The convolutional neural networks are similar to the traditional feed forward neural networks, except that the different type of layers are being used. figure depicts basic architectue of a cnn. The most common three layers that present in a standart convolutional neural networks are \textit{convolution}, \textit{pooling},and \textit{ReLU} layer. ReLU is an activation layer which is similarly applied as in the traditional neural networks. Finally, the final layer is often a fully connected layer which maps given inputs into the set of output nodes. Before explaining each layer, first, we examine the input data to the network. As it has already mentioned, we assume that our input is image data. Hence, the input to the convolutional neural network is organized into a 2-dimensional grid structure and each grid value is referred to as \textit{pixels}. Each pixel corresponds to a spatial location within the image. Further, in order to encode the color i.e., red, green, and blue of each pixel multi dimensional array of values at each grid location is being used. Assume that given an image with 32 × 32 spatial dimensions and the depth is 3 , then the overall number of pixels in the image would be 32 × 32 × 3. Moreover, in convolutional neural networks filters or kernels often are organized into 3-dimensional structural units (see Fig. ) which are usually much smaller than those of the layer the filter is applied to. Further, the filter is usually square in terms of its spatial dimension and the depth of it is always same as the layer to which it is applied. 
+The convolutional neural networks are similar to the traditional feed forward neural networks, except that the different type of layers are being used. Figure~\ref{fig:cnn_text_cat} illustrates a very simple example of a CNN architecture for a sentence classification task. The most common three type of layers that present in standard convolutional neural networks are \textit{convolution}, \textit{pooling},and \textit{ReLU} layer. ReLU is an activation layer which is similarly applied as in the traditional neural networks. Finally, the final layers of convolutional neural networks  are often fully connected. %  which maps given inputs into the set of output nodes. 
+Before explaining each layer, first, we briefly examine general architecture of the network. Since main topic of this thesis is text categorization we discuss model in the context of text categorization. Therefore, we assume that our concern is to perform sentence classification as shown in Figure~\ref{fig:cnn_text_cat} where the input is text data. Given a piece of text, i.e., a sentence, the first step is tokenization. As it has already mentioned, con
+convolutional neural networks accept grid-like structured data as an input, therefore, tokens are converted to a sentence matrix. The rows of the matrix are the vector representation of each token. These might be e.g., word vectors from a pre-trained Skip-gram model or from any other word embedding model. Let the $d$ denote the dimension of the word vectors and $s$ is the number of tokens present in a given sentence. Then, the dimensionality of the sentence matrix is $s\times d$. Then, the convolution operation is performed via \textit{"filters"}. The dimension of each feature map might be different based on the filter size and thus a pooling function is applied to each feature map to extract a scalar from each feature map and induce a fixed length vector. Then those vectors are concatenated to form a single feature vector. This vector can be fed through directly a softmax function or to a fully connected layer then to a softmax function to produce the outputs. \\
+In the next subsections the details of each layer have been discussed.  
+
+%Hence, the input to the convolutional neural network is organized into a 2-dimensional grid structure and each grid value is referred to as \textit{pixels}. Each pixel corresponds to a spatial location within the image. Further, in order to encode the color i.e., red, green, and blue of each pixel multi dimensional array of values at each grid location is being used. Assume that given an image with 32 × 32 spatial dimensions and the depth is 3 , then the overall number of pixels in the image would be 32 × 32 × 3. Moreover, in convolutional neural networks filters or kernels often are organized into 3-dimensional structural units (see Fig. ) which are usually much smaller than those of the layer the filter is applied to. Further, the filter is usually square in terms of its spatial dimension and the depth of it is always same as the layer to which it is applied. 
 
 %intensity of the three primary colors i.e., red, green, and blue then the 
-The \textit{convolution operation} places the filter to each possible position in the image and then basically performs the dot product between the filter and the matching grid of the image (which has the same volume with the filter). When performing the convolution operation the filter should be alligned with the filter in way that no portion of the filter is "sticking out" from the borders of the image. The possible dot products defines the dimention of the next layer. The figure illustrates the simple convolution  operation....
-%Figure 8.1 or 8.2
-\begin{figure*}[h]
+\begin{figure*}[t]
 \centering
  \includegraphics[height=10cm,width=\linewidth]{Figures/fig_cnn_convolution.png}
- \caption{Overview of a simple convolutional neural network architecture.}
+ \caption{Overview of a simple convolutional operation. The image has been extracted from}
  \label{fig:cnn_convolution}
 \end{figure*}
 
-The formal definiation of the convolution operation is as folows:
+\subsubsection{Convolution}
+The \textit{convolution operation} places the filter to each possible position in the input and then basically performs the dot product between the filter and the matching grid of the input. Figure~\ref{fig:cnn_convolution} illustrates the general convolution operation. When performing the convolution operation the filter should be alligned with the matrix in a way that no portion of the filter is sticking out from the borders of the matrix. The possible dot products defines the dimension of the next layer. Note that the size of the filters are determined based on the application at hand, e.g., for a sentence classification task given a sentence matrix where each row is a word vector, then it is resasonable to use filters with widths equal to dimension of the word vectors. \\
+Given a filter which is parametrized by the weight matrix $w$. The width of the filter is $d$ and the height is $h$, then the $w$ will contain $h \dot d$ to be estimated. Let $A$ denote sentence matrix by $A \in ..$ where $s$ is number of words present in... and $A[i:j]$ represents the sub-matrix of $A$ from row $i$ to row $j$. Then the output of the convolution operation $o \in ..$ is obtained by iteratively applying the filter on sub matrices of $A$ as follows:
 
 \begin{equation}
-\begin{split}
-h_{ijp}^{(q+1)} = \sum_{r=1}^{F_q}\sum_{s=1}^{F_q}  \sum_{k=1}^{d_q} w_{rsk}^{(p,q)}h_{i+r-1,j+s-1,k}^{(q)} \forall i \in \{1,...,L_q-F_q +1\}& \\
-\forall j \in \{1,...,B_q-F_q +1\}&\\
-\forall p \in \{1,...,d_{q+1}\}&
-\end{split}
+o_i = w \cdot A \left[i:i + h -1\right]
 \end{equation}
+where $i = 1,. . ., s\num{-h}+1$, and $\cdot$ is the dot product between the sub-matrix and the filter.
+%Figure 8.1 or 8.2
+%The formal definiation of the convolution operation is as folows:
+
+% \begin{equation}
+% \begin{split}
+% h_{ijp}^{(q+1)} = \sum_{r=1}^{F_q}\sum_{s=1}^{F_q}  \sum_{k=1}^{d_q} w_{rsk}^{(p,q)}h_{i+r-1,j+s-1,k}^{(q)} \forall i \in \{1,...,L_q-F_q +1\}& \\
+% \forall j \in \{1,...,B_q-F_q +1\}&\\
+% \forall p \in \{1,...,d_{q+1}\}&
+% \end{split}
+% \end{equation}
 
 
 \subsubsection{Padding}
@@ -189,7 +221,6 @@ The pooling operation works on a small square grid regions of size Pq x Pq. The 
 There are also other type of pooling such as average-pooling. However, they are rarely used. 
 \subsubsection{Fully Connected Layers}
 The final spatial layer is connected to a first fully connected layer. This layer is exactly the same as traditional ffnns. Depending on the application at hand the number of the fully connected layers and the activation function output layer  
-
 
 \subsection{Recurrent Neural Networks}
 The recurrent neural networks are derived from  simple ffnn by adding \textit{recurrent} connections on the hidden layer. The rnn can be used in almost any sequential data, however, its use in the text domain is the most common.  

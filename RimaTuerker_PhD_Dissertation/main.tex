@@ -2,7 +2,9 @@
 %********************************************************
 \documentclass[a4paper,BCOR5mm,11pt,headsepline,bibtotoc]{scrbook}
 
-\usepackage[margin={2cm,0.2cm}]{caption}
+
+
+\usepackage[margin={0.2cm,0.2cm}]{caption}
 \usepackage[super]{nth}
 
 \usepackage{times,amsmath,epsfig}
@@ -25,6 +27,7 @@
 
 \usepackage{color,soul}
 \usepackage{multirow}
+%\usepackage[options]{natbib}
 
 \usepackage{CJKutf8}
 \usepackage[utf8]{inputenc}
@@ -81,6 +84,9 @@
 
 \setlength{\parindent}{0pt}
 \newcommand{\forceindent}{\leavevmode{\parindent=1em\indent}}
+\newcommand{\SubItem}[1]{
+    {\setlength\itemindent{15pt} \item[-] #1}
+}
 
 \usepackage{listings}
 \usepackage{xcolor}
@@ -129,6 +135,8 @@
 }
 
 \usepackage{currvita}
+\usepackage{outlines}
+
 
 \usepackage[ngerman, english]{babel} % Englische und Deutsche Version
 % Standard-Dokument mit
@@ -150,6 +158,8 @@
 \makeindex
 %********************************************************
 \begin{document}
+
+
 % Tabellen etwas gr��er
 \renewcommand{\arraystretch}{1.25}
 \setlength{\parindent}{3em}
@@ -189,8 +199,9 @@
 \backmatter
 %********************************************************
 % Insert Bibliography
-%GATHER{diss_lzh.bib}
+%GATHER{diss_rtue.bib}
 %\bibliographystyle{myplainnat}
+
 \bibliographystyle{pnnamed}
 \bibliography{diss_rtue}
 %********************************************************

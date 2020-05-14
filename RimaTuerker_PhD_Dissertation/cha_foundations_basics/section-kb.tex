@@ -23,16 +23,15 @@ Given that knowledge graphs are drawing more attention especially after the anno
  \caption{Example of a simple RDF graph}
  \label{fig:rdf_simple_graph}
 \end{figure*} 
-\noindent Different than the aforementioned definitions,~\textcite{DBLP:journals/semweb/FarberBMR18} gives the formal definition of a knowledge graph as an RDF graph:
 
 \theoremstyle{definition}
-\begin{definition}{(RDF Graph):\\}
-\textit{"An RDF graph consists of a set of RDF triples (cf. Definition~\ref{}) where each RDF triple \texttt{(s,p,o)} is an ordered set of the following
+\begin{definition}{(Knowledge Graph):\\}
+\textit{Different than the aforementioned definitions,~\textcite{DBLP:journals/semweb/FarberBMR18} gives the formal definition of a knowledge graph as an RDF graph. "An RDF graph consists of a set of RDF triples (cf. Definition~\ref{}) where each RDF triple \texttt{(s,p,o)} is an ordered set of the following
 RDF terms: a subject \texttt{$\textit{s}\in\textit{U}$} $\cup$\texttt{$\textit{B}$}, a predicate \texttt{$\textit{p}\in\textit{U}$}, and an object \texttt{$\textit{U}$} $\cup$  \texttt{$\textit{B}$} $\cup$ \texttt{$\textit{L}$}. An RDF term is either a URI \texttt{$\textit{u}\in\textit{U}$}, a blank node \texttt{$\textit{b}\in\textit{B}$}, or a literal \texttt{$\textit{l}\in\textit{L}$}. \texttt{$\textit{U}$},  \texttt{$\textit{B}$} and \texttt{$\textit{L}$} are pairwise disjoint".}~\cite{DBLP:journals/semweb/FarberBMR18}
 \end{definition} \todo{ask: if is it sufficient}
 \theoremstyle{definition}
-\todo{footnote url}
-\todo{text font tt}
+%\todo{footnote url}
+%\todo{text font tt}
 Knowledge graphs have been utilized in many real world information systems which require to leverage a structured, diverse, large-scale collection of data~\cite{DBLP:journals/semweb/Paulheim17,hogan2020knowledge}, e.g., the Google Knowledge Graph plays a very important role for enhancing the search engine results.  Besides the industry, knowledge graphs have been extensively utilized in various research areas (e.g., artificial intelligence) in academia. Moreover, the idea of leveraging structured knowledge, i.e., machine understandable knowledge by intelligent systems has been a goal of artificial intelligence research for decades~\cite{DBLP:journals/semweb/Paulheim17}. %Knowledge Graphs employ a graph-based form to represent knowledge, which can be domain specific such as facts about chemical interactions or domain independent. 
 
 Furthermore, in the \textit{Semantic Web} community the term knowledge graph is also used to refer to the Semantic Web Knowledge Bases such as DBpedia, Wikidata, YAGO, etc.~\cite{DBLP:journals/semweb/Paulheim17} To facilitate the discussion, first we give the definition of the Semantic Web which was proposed by Tim Berners-Lee et al. as "\textit{A new form of web content that is meaningful to computers}'', in 2001. Since then the fundamentals of the Semantic Web have been based on the idea of representing knowledge in a structured and machine understandable way. Today, knowledge bases are one of the most essential components of the Semantic Web.
@@ -46,15 +45,29 @@ The RDF standards allow to define different types of nodes in a knowledge base n
 The RDF resources are identified by unique \textit{Internationalized Resource Identifiers} (IRIs)~\cite{DBLP:journals/rfc/rfc3987} that allow identification of entities on the Web. However, blank nodes are not assigned to any identifier and thus they do not carry any additional information within a knowledge base. Instead, blank nodes can only indicate an existence of a thing. The representation of knowledge in knowledge bases is based on the idea of making statements about the resources in the form of RDF triples (\texttt{subject,  predicate, object}), where the subject could be an entity or a blank node, whereas the object could be an entity or a blank node or a literal. Note that literals can only be in an object position.
 \theoremstyle{definition}
 \begin{definition}{(RDF triple):\\}
+\textit{Given a set of URIs U,\todo{URI or IRI check} a set of blank nodes B, and a set of literals L, an RDF triple is represented as $t=(s,p,o)\in (U \cup B) \times U \times (U \cup B \cup L)$, where $s$ is a subject, $p$ is a predicate and $o$ is an object.}
+\end{definition}
+\theoremstyle{definition}
+
+
+\theoremstyle{definition}
+\begin{definition}{(Triple Pattern):\\}
 \textit{"Let U, B, L be disjoint infinite sets of URIs, blank nodes, and literals, respectively. Let V be a set of variable such that $V \cap (U\cup B \cup L) = \emptyset$. A triple pattern defined as a 3-tuple $(s, p, o) \in (U\cup V) \times (U\cup V)\times (L\cup U \cup V)$, where the components subject, predicate and object correspond to RDF terms or variables."}~\cite{DBLP:phd/dnb/Deibe18}.
 \end{definition}
 \theoremstyle{definition}
-Some of the RDF triple examples from Figure~\ref{fig:rdf_simple_graph} are \texttt{(dbr:Albert\_Einstein rdf:type dbo:Person)} and \texttt{(dbr:Alfred\_Kleiner rdf:type dbo:Scientist)}. Note that RDF's name space is \\http://www.w3.org/1999/02/22-rdf-syntax-ns\# and abbreviated by "rdf:". There exist several serialization syntaxes to convert RDF graphs into machine readable forms such as N-triples\footnote{\url{https://www.w3.org/TR/n-triples/}}, Turtle\footnote{\url{https://www.w3.org/TR/turtle/}}, etc. Listing~\ref{listing_rdf_serialization} is the turtle serialization of the RDF graph, which is depicted in Figure~\ref{fig:rdf_simple_graph}.  Listing~\ref{listing_rdf_serialization} shows that the RDF vocabulary has been used to define resources (e.g., \texttt{dbr:Albert\_Einstein rdf:type dbo:Scientist}) and predicates (e.g., \texttt{dbo:birthPlace rdf:type dbo:Property}).
+
+\theoremstyle{definition}
+\begin{definition}{(RDF Graph):\\}
+\textit{"A finite set of RDF triples is called as RDF Graph $\mathcal{G}$ such that $\mathcal{G}=(V, E)$, where V is a set of vertices and E is a set of labeled edges.}
+\end{definition}
+\theoremstyle{definition}
+
+Some of the RDF triple examples from Figure~\ref{fig:rdf_simple_graph} are \texttt{(dbr:Albert\_Einstein rdf:type dbo:Person)} and \texttt{(dbr:Alfred\_Kleiner rdf:type dbo:Scientist)}. Note that RDF's namespace abbreviated by \texttt{"rdf:"}\footnote{\url{http://www.w3.org/1999/02/22-rdf-syntax-ns#}}. There exist several serialization syntaxes to convert RDF graphs into machine readable forms such as N-triples\footnote{\url{https://www.w3.org/TR/n-triples/}}, Turtle\footnote{\url{https://www.w3.org/TR/turtle/}}, etc. Listing~\ref{listing_rdf_serialization} is the turtle serialization of the RDF graph, which is depicted in Figure~\ref{fig:rdf_simple_graph}.  Listing~\ref{listing_rdf_serialization} shows that the RDF vocabulary has been used to define resources (e.g., \texttt{dbr:Albert\_Einstein rdf:type dbo:Scientist}) and predicates (e.g., \texttt{dbo:birthPlace rdf:type dbo:Property}).
 
 %Further, the knowledge is represented by the ontologies and 
 %Figure~\ref{fig:rdf_simple_graph} illustrates that RDF can only define, i.e., assign type information to resources. 
 
-\par Another particular RDF vocabulary is RDFS which enables the specification of schema knowledge~\cite{DBLP:books/crc/Hitzler2010}. \todo{write the name space rdfs} For example, the definition of domain and range of properties (e.g., (\texttt{dbo:birthPlace rdfs:domain dbo:Person}), (\texttt{dbo:birthPlace rdfs:range dbo:Place})) and hierarchical relationships, i.e, sub classes (e.g., \texttt{dbo:Scientist rdfs:subClassOf dbo:Person}), sub properties and more besides~\cite{DBLP:books/crc/Hitzler2010}. Due to capability of specifying such schema knowledge, RDFS can also be considered as an \textit{ontology language}. Let us first discuss the term \textit{ontology}. According to~\citeauthor{gruber1993translation} ontology can be defined as follows:
+\par Another particular RDF vocabulary is RDFS which enables the specification of schema knowledge~\cite{DBLP:books/crc/Hitzler2010}. RDFS's namespace abbreviated by \texttt{"rdfs:"}\footnote{\url{http://www.w3.org/2000/01/rdf-schema#}}. For example, the definition of domain and range of properties (e.g., (\texttt{dbo:birthPlace rdfs:domain dbo:Person}), (\texttt{dbo:birthPlace rdfs:range dbo:Place})) and hierarchical relationships, i.e, sub classes (e.g., \texttt{dbo:Scientist rdfs:subClassOf dbo:Person}), sub properties and more besides~\cite{DBLP:books/crc/Hitzler2010}. Due to capability of specifying such schema knowledge, RDFS can also be considered as an \textit{ontology language}. Let us first discuss the term \textit{ontology}. According to~\citeauthor{gruber1993translation} ontology can be defined as follows:
 \begin{definition}{(Ontology):\\}
 Originally,~\citeauthor{gruber1993translation}~\citeyear{gruber1993translation} defined ontology as \textit{"explicit specification of a conceptualization"}. Then, an ontology defined as "formal specification of a shared conceptualization" by bla in 1997\todo{add ref}. Finally, blabla merged these two definiations and defined an ontology as \textit{"formal, explicit specification of a shared conceptualization"}. Today, the latter definition is the one which is most commonly accepted and used.
 \end{definition}
@@ -66,23 +79,23 @@ In this definition, \textit{conceptualization} implies that existing of an abstr
 Figure~\ref{fig:rdf_simple_graph} illustrates that the simple ontologies can be modeled by RDF(S), however, for modeling more complex representations of knowledge the Web Ontology Language (OWL) is being used. OWL is based on formal logic and supports much greater expressiveness than RDF(S). Further, it allows logical reasoning on the knowledge and thus enables to deduce implicit knowledge which is not explicitly modeled. There exist different flavours of OWL2 which is the last version OWL and based on description logic, i.e., OWL2 EL, OWL2 RL, OWL2 QL, OWL2 DL, OWL2 Full. Each of these species of OWL2 has different level of expressivity. OWL2 DL is more expressive than OWL2 EL, OWL2 RL and OWL2 QL and less expressive than OWL2 Full.
 In other words, OWL2 DL is the expressive and decidble version of OWL. Therefore, in this section we focus on OWL2 DL.
 
-OWL2 standards which are specified by World Wide Web Consortium allow to define class expressions (e.g., conjunction, disjunction), properties, class and property axioms, and facts. Moreover, OWL supports RDF syntax therefore, similar to RDF(S) documents, each OWL document in RDF syntax is also an RDF document. OWL's name space is \\<http://www.w3.org/2002/07/owl\#> and abbreviated by "owl:". Further, the OWL axioms expressed in terms of 
+OWL2 standards which are specified by World Wide Web Consortium allow to define class expressions (e.g., conjunction, disjunction), properties, class and property axioms, and facts. Moreover, OWL supports RDF syntax therefore, similar to RDF(S) documents, each OWL document in RDF syntax is also an RDF document. OWL's name space is \\<http://www.w3.org/2002/07/owl\#> and abbreviated by "owl:". Further, the OWL axioms expressed in terms of\\ 
 \begin{outline}
 \1 \textbf{Classes.} OWL classes are comparable with RDF(S) classes. There exist two predefined classes in OWL namely, \texttt{owl:Thing} whose member is all individuals and \texttt{owl:Nothing} which is an empty class, i.e., it does not contain any individual. Definition of a class as follows: 
-    \2 :Wine rdf:type owl:Class.  
+    \2 \texttt{:Wine rdf:type owl:Class.}  
  \1 \textbf{Individuals.} OWL individuals can be defined in two different ways, namely via class membership which is comparable with RDF(S) class instances and without a class membership.
-\2 :RoseWine rdf:type :Wine .
-\2 :Beer rdf:type owl:NamedIndividual .
+\2 \texttt{:RoseWine rdf:type :Wine .}
+\2 \texttt{:Beer rdf:type owl:NamedIndividual .}
 \1 \textbf{Properties.} OWL allows definition of two types of properties, i.e., object properties and datatype properties and they are comparable with RDF(S) properties. 
 \2 \textbf{Object Properties.} Object Properties of OWL have classes as domain and range.
-\3 :pairWith rdf:type owl:ObjectProperty ;\\
-\hspace{2cm}          rdfs:domain owl:Thing ;\\
-        rdfs:range  :Seafood .
+\3 \texttt{:pairWith rdf:type owl:ObjectProperty ;}\\
+\hspace*{2.2cm}      \texttt{rdfs:domain owl:Thing ;}\\
+\hspace*{2.2cm}        \texttt{rdfs:range  :Seafood .}
 \2 \textbf{Datatype Properties.} Datatype Properties of OWL have datatypes as range.
-\3 :color rdf:type owl:ObjectProperty ;\\
-\hspace*{1.cm}rdfs:domain owl:Thing ;\\
-\hspace*{1cm}rdfs:range  xsd:date . 
-\end{outline} \todo{fix the spacing issues}
+\3 \texttt{:color rdf:type owl:ObjectProperty ;}\\
+\hspace*{1.6cm}\texttt{rdfs:domain owl:Thing ;}\\
+\hspace*{1.6cm}\texttt{rdfs:range  xsd:date . }
+\end{outline} 
 %For the sake of consistency, in the following the turtle serialization(cf. Listing~\ref{listing_rdf_serialization}) of OWL2 is used in the examples of OWL axioms.
 \noindent Obviously, it is also possible to define much more expressive facts with OWL such as logical class constructions, property restrictions,etc. More details about OWL can be found  in~\cite{DBLP:books/crc/Hitzler2010}.
 % \begin{figure*}[t]
@@ -91,7 +104,7 @@ OWL2 standards which are specified by World Wide Web Consortium allow to define 
 %  \label{fig:architecture}
 % \end{figure*}
 \subsection{Open Knowledge Graphs} 
-Open knowledge graphs are openly available and freely usable. There are different ways of constructing open knowledge graphs, i.e, they can be curated by a small group of people or crowd sourced by a large group of people or created by utilizing automatic or semi-automatic methods~\cite{DBLP:journals/semweb/Paulheim17}. In the following we give the example of knowledge bases which have been built by different methods:
+Open knowledge graphs are openly available and freely usable. There are different ways of constructing open knowledge graphs, i.e, they can be curated by a small group of people or crowd sourced by a large group of people or created by utilizing automatic or semi-automatic methods~\cite{DBLP:journals/semweb/Paulheim17}. In the following we give the example of knowledge bases which have been built by different methods:\\
 \begin{itemize}
 \item \textbf{Cyc and OpenCyc~\cite{DBLP:journals/cacm/Lenat95}.} Cyc is one of the oldest curated knowledge bases of common sense which is developed and maintained by the CyCorp company starting in 1984. The artificial intelligent project Cyc, represents millions of common sense facts. For example:
 \begin{itemize}
@@ -126,7 +139,8 @@ different data sources by following RDF links. Hence, the Semantic Web aims to m
 %\noindent \textbf{Linked Open Data (LOD).}
 Linked Open Data (LOD) refers to publicly available RDF data which is identified via URI and accessible via HTTP on the Web. Further, those RDF datasets are linked to other datasets via URI. Accordingly, the Linked Open Data project aims to identify datasets that are available under open licenses, re-publish
 these in RDF on the Web and interlink them with each other~\cite{DBLP:conf/www/BizerHIB08}. \\
-The principles of Linked Data were first outlined by Berners-Lee in 2006:
+
+\noindent The principles of Linked Data were first outlined by Berners-Lee in 2006:
 \begin{itemize}
 \item Use URIs as names for things.
 \item Use HTTP URIs so that people can look up those names.
@@ -138,7 +152,7 @@ The four rules provide broad guidance on which publishing RDF data can be based.
 browsers and users can easily explore and navigate between different data sources.
 
 The network of publicly available RDF datasets that are in concordance with linked data principles has grown globally. As of April 2017, the number of publicly available RDF datasets is 9960 and it contains roughly more than 149 billion facts and roughly more than 800 million links.%\todo{check the numbers} 
-The visualization of interlinked RDF datasets which is referred to as \textit{Linked Open Data Cloud\footnote{\url{https://lod-cloud.net/}}} has been  created by~\citeauthor{LOD_cloud}.  Figure~\ref{fig:lod_cloud} illustrates the evolution of the LOD cloud from its beginning in 2007 until 2019.  
+The visualization of interlinked RDF datasets which is referred to as \textit{Linked Open Data Cloud\footnote{\url{https://lod-cloud.net/}}} has been  created by~\citeauthor{LOD_cloud}.  Figure~\ref{fig:lod_cloud} illustrates the evolution of the LOD cloud from its beginning in 2007 until 2019. \todo{tell that each color represents a different domain such as bla bla} 
 
 Each node in the networks represents one dataset. As of March 2019, the huge network contains 1,239 datasets with 16,147 links. Moreover, DBpedia has been one of the most popular datasets in these networks across the years. 
 %Semantic web is about making meaningful links between heterogeneous data sources to enable persons and machines to explore a "web of data" 

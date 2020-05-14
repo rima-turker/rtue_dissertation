@@ -49,6 +49,9 @@
 \newcommand{\rima}[1]{\textbf{(Rima: #1)}}
 
 \usepackage{todonotes}
+%\usepackage[disable]{todonotes}
+
+\usepackage{subcaption}
 
 %%\newtheorem{definition}{Definition}
 \theoremstyle{definition}
@@ -126,6 +129,7 @@
 }
 
 \usepackage{hyperref}
+\usepackage[noabbrev]{cleveref}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -136,6 +140,7 @@
 
 \usepackage{currvita}
 \usepackage{outlines}
+\usepackage{mathrsfs}
 
 
 \usepackage[ngerman, english]{babel} % Englische und Deutsche Version
@@ -187,10 +192,12 @@
 %********************************************************
 % Insert Parts
 %\input{part_Introduction}
-\input{cha_foundations_introduction}
+\input{cha_introduction}
+%\input{cha_foundations_introduction}
 \input{cha_foundations_basics}
 \input{cha_foundations_text_cat}
-\input{cha_kb_text_cat}
+\input{cha_kbstc}
+%\input{cha_kb_text_cat}
 \input{cha_weakly_supervised_cat}
 %\input{cha_patent_class}
 \input{cha_conclusions_conclusions}

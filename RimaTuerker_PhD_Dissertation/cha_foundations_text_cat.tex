@@ -1,34 +1,5 @@
 \chapter{Text Categorization}
 \label{cha:foundations_text_cat}
-The problem of \textit{categorization} has been extensively studied in various domains i.e., data mining, machine learning, database, and information retrieval communities with wide range of applications such as document categorization, spam filtering, medical diagnosis~\cite{book_survey_text_class_algorithms}. The main goal of a categorization task is to assign or more class labels to data instance for which the class is unknown. The general categorization task assumes each class label is a predefined categorical value, e.g., \textit{Sports}, \textit{Science}, \textit{Politics}, etc. The problem of text categorization is closely related to such type of a task. In other words, text categorization aims to assign one or more predefined classes or categories to natural language documents based on the attributes of the each text document. It is one of the most fundamental tasks in Natural Language Processing with wide applications such as sentiment analysis, ... %Text categorization finds its applications in variouse domains such as ...
-Text classification
-has a wide variety of application scenarios, for instance: \newline% explain here the applications
-%TODO enumaration here and the KBs
-%Short Text Classification: A Survey yo can have a look at it
-
-\textbf{Information retrieval.}
-Information retrieval systems and search engines have extensively made use of text categorization techniques~\cite{survey}. The IR task can be formulated as a given user query the task is to retrieve all the relevant documents to the query while retrieving as less relavent documents as possible. It is a crucial task in variaty of domains as it helps to find a quickly finding relavent information within massive natural language text documents which are most of the time highly unstructured. 
-
-
-\textbf{Document organization.}
-A variety of text categorization techniques can be exploited to for document organization in many domains. These include large collection of patent documents, Web content, digital libraries, academic articles. In addition, many companies nowadays required to organize and analyse business information like legal documents, emails, web pages, etc. 
-
-\textbf{Sentiment analysis.}
-One of the most common text categorization problems is sentiment analysis. It aims to extract subjective information such as positive or negative or neutral from text documents. For example, it can help business to understand the social sentiment of their brand and adopt the product accordingly.  
-
-\textbf{Spam filtering.}
-It is often desirable to determine the spam emails i.e., unwanted, and/or virus-infested emails in order to avoid it from getting into email inboxes. Most of the business email networks use spam filtering systems to protect the system from the many possible risks. The goal of the spam filtering systems is to decide whether a given email spam or not. To this end, binary text categorizations techniques have been extensively utilized.
-
-There exist three main types of text categorization methods types of systems, namely, \textit{manual}, \textit{Rule-based}, \textit{Machine Learning based}. Although often manually labeled documents by human highly accurate, it is the most expensive one among the aforementioned methods. Especially, if the text to be labeled is of a specific domain only several domain experts can categorize such data.pretty slow and expensive. On the other hand, Rule-based systems leverage user defined linguistic rules to perform the categorization task.manually build and maintain
-a rule-based system, These rules are designed to utilize the semantic content of the documents to assign relevant categories. Each rule consist of a pattern and the corresponding category~\cite{DBLP:conf/ijcnlp/ChakravarthyJRGB08}. In contrast to aforementioned systems, the machine learning based systems rely on the past observations to make a prediction. In other words, such systems can learn the associations between the content of the documents and the labels by utilizing available training data (pre-labeled). Altough machine learning based systems seem to be the most common, they require large amount of labeled data. Further, not only the size of the data is an issue but also the characteristic of the data is also important to build an successful machine learning based system.  
-
-
-%semi-supervised and weakly supervised Supervised is too expensive % explain each method in 1 or 2 sentences
-In this thesis we focus on where the labeled data is not available
-
-\textcolor{red}{Figure text classification fi from Short Text Classification: A Survey}
-
-An overview of tasks involved in text categorization is shown in Fig In the following sections %explain each step in 1-3 sentence
 
 %classification
 
@@ -36,4 +7,5 @@ An overview of tasks involved in text categorization is shown in Fig In the foll
 %Characteristic of Text
 %\subsection{Text Categorization}
 %Short, long text categorization...
+\input{cha_foundations_text_cat/section-introduction}
 \input{cha_foundations_text_cat/section-text_cat}
